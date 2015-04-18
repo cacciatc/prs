@@ -12,6 +12,8 @@ function GUI() {
 	this.hero_name 			 = null;
 	this.enemy_name			 = null;
 
+	this.stage				 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -63,8 +65,11 @@ GUI.HERO_NAME_X = 20 + 200;
 GUI.HERO_NAME_Y = 30;
 GUI.HERO_NAME 	= "MURRAY";
 
-GUI.ENEMY_NAME_X = 600 - 130;
+GUI.ENEMY_NAME_X = 600 - 90;
 GUI.ENEMY_NAME_Y = 30;
+
+GUI.STAGE_X 	 = 400;
+GUI.STAGE_Y		 = 5;
 
 /* given a game object add gui elements */
 GUI.prototype.generate = function(game, match) {
@@ -89,10 +94,15 @@ GUI.prototype.generate = function(game, match) {
 	this.enemy_portrait.animations.add('hurt',  [1]);
 
 	/* add combatant names */
-	var style = { font: "34px Amatic SC", fill: "#ffffff", align: "center" };
+	var name_style = { font: "34px Amatic SC", fill: "#ffffff", align: "center" };
 
-	this.hero_name = game.add.text(GUI.HERO_NAME_X, GUI.HERO_NAME_Y, GUI.HERO_NAME, style);
-	this.hero_name = game.add.text(GUI.ENEMY_NAME_X, GUI.ENEMY_NAME_Y, match.enemy_name, style);
+	this.hero_name = game.add.text(GUI.HERO_NAME_X, GUI.HERO_NAME_Y, GUI.HERO_NAME, name_style);
+	this.hero_name = game.add.text(GUI.ENEMY_NAME_X, GUI.ENEMY_NAME_Y, match.enemy_name, name_style);
+
+	/* add stage text */
+	var stage_style = { font: "55px Amatic SC", fill: "#ffffff", align: "center" };
+
+	this.stage = game.add.text(GUI.STAGE_X, GUI.STAGE_Y, match.stage, stage_style);
 
 	/* shouldn't have to be scaled in the end */
 	this.hero_portrait_box.scale.x = 0.5;

@@ -27,7 +27,8 @@ PRS.Game.prototype = {
         var match = {
             enemy_portrait_box: 'enemy_portrait_box',
             enemy_portrait:     'enemy_portrait',
-            enemy_name:         'PAPA PAPYRUS'
+            enemy_name:         'P. PAPYRUS',
+            stage:              '1'
         };
 
         /* create the GUI */
