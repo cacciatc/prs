@@ -7,7 +7,7 @@ PRS.Game.prototype = {
         console.log("In game state");
 
         /* create ai */
-        this.data.ai = AI.create_rockman();
+        this.data.ai = new rockman();
 
         /* setup input */
         this.data.r_key = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
@@ -32,6 +32,8 @@ PRS.Game.prototype = {
         /* create the GUI */
         this.data.gui = new GUI();
         this.data.gui.generate(this.game, match);
+
+        this.data.resultSet = [];
     },
     initLevels: function() {},
     showLevel: function(level) {},
@@ -51,6 +53,7 @@ PRS.Game.prototype = {
 
         this.data.gui.update();
     },
+
     wallCollision: function() {},
     handleOrientation: function(e) {},
     finishLevel: function() {},
@@ -82,42 +85,63 @@ var engine = function(game) {
     var hero = game.data.hero;
     var ai   = game.data.ai;
 
+    var roundOver = false;
+
+    startRound = function() {
+        if (roundOver) {
+            data.ai_shot   = null;
+            data.hero_shot = null;
+        }
+    };
+
     shoot_ai =    function(move) {
         game.data.ai_shot = move;
         this.shoot_result();
     };
 
     shoot_user = function(move) {
-        game.data.user_shot = move;
+        game.data.hero_shot = move;
         this.shoot_result();
     };
 
     shoot_result = function() {
-        if (game.data.ai_shot   === undefined) return;
-        if (game.data.user_shot === undefined) return;
+        if (game.data.ai_shot   === null) return;
+        if (game.data.hero_shot === null) return;
 
         // tie game
-        if (game.data.ai_shot === game.data.user_shot) {
+        if (game.data.ai_shot === game.data.hero_shot) {
+            //console.debug(game.data.resultSet);
             game.data.resultSet.push("TIE");
             hero.tieShoot();
             ai.tieShoot();
+            roundOver = true;
             return;
         }
 
         // there is a winner
-        var winner = roshambo(game.data.user_shot, game.data.ai_shot);
+        var winner = roshambo(game.data.hero_shot, game.data.ai_shot);
         game.data.resultSet.push(winner);
 
-        if (winner === game.data.user_shot) {
+        if (winner === game.data.hero_shot) {
             hero.winShoot();
-            ai.winShoot();
+            ai.loseShoot();
         }
         else
         {
-            hero.winShoot();
+            hero.loseShoot();
             ai.winShoot();
         }
-};
+
+        roundOver = true;
+    };
+
+    return {
+        shoot_ai:     shoot_ai,
+        shoot_user:   shoot_user,
+        shoot_result: shoot_result,
+        isRoundOver:  function(){ return this.roundOver; },
+        startRound: startRound,
+    }
 }
 
 
