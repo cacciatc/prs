@@ -19,6 +19,16 @@
 <script>
 (function() {
     var game = new Phaser.Game(800, 500, Phaser.CANVAS, 'game');
+
+    //  The Google WebFont Loader will look for this object, so create it before loading the script.
+    WebFontConfig = {
+        active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
+
+        google: {
+          families: ['Amatic+SC']
+        }
+    };
+
     game.state.add('Boot', PRS.Boot);
     game.state.add('Preloader', PRS.Preloader);
     game.state.add('MainMenu', PRS.MainMenu);

@@ -89,7 +89,7 @@ GUI.prototype.generate = function(game, match) {
 	this.enemy_portrait.animations.add('hurt',  [1]);
 
 	/* add combatant names */
-	var style = { font: "16px Arial", fill: "#ff0044", align: "center" };
+	var style = { font: "34px Amatic SC", fill: "#ffffff", align: "center" };
 
 	this.hero_name = game.add.text(GUI.HERO_NAME_X, GUI.HERO_NAME_Y, GUI.HERO_NAME, style);
 	this.hero_name = game.add.text(GUI.ENEMY_NAME_X, GUI.ENEMY_NAME_Y, match.enemy_name, style);

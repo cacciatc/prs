@@ -1,4 +1,6 @@
-PRS.Preloader = function(game) {};
+PRS.Preloader = function(game) {
+    this.game = game;
+};
 PRS.Preloader.prototype = {
     preload: function() {
         //this.preloadBg = this.add.sprite((Ball._WIDTH-297)*0.5, (Ball._HEIGHT-145)*0.5, 'preloaderBg');
@@ -7,6 +9,9 @@ PRS.Preloader.prototype = {
 
         //this.load.spritesheet('button-start', 'img/button-start.png', 146, 51);
         //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
+
+        /* font */
+        this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
         /* gfx */
 
