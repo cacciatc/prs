@@ -9,9 +9,17 @@ PRS.Game.prototype = {
         /* create ai */
         this.data.ai = AI.create_rockman();
 
-        /* create input handler */
-        this.data.input_handler = new InputHandler();
-        this.data.input_handler.bind(Phaser.Keyboard.R, function() { console.log("rock"); });
+        /* setup input */
+        this.data.r_key = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
+        this.data.s_key = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
+        this.data.p_key = this.game.input.keyboard.addKey(Phaser.Keyboard.P);
+
+        /* stop keys from propagating */
+        this.game.input.keyboard.addKeyCapture([ 
+            Phaser.Keyboard.R, 
+            Phaser.Keyboard.S, 
+            Phaser.Keyboard.P 
+        ]);
     },
     initLevels: function() {},
     showLevel: function(level) {},
@@ -19,14 +27,14 @@ PRS.Game.prototype = {
     managePause: function() {},
     manageAudio: function() {},
     update: function() {
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
-            this.data.input_handler.rock();
+        if (this.data.r_key.justDown) {
+            console.log("rock");
         }
-        else if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
-            this.data.input_handler.paper();
+        else if (this.data.p_key.justDown) {
+            console.log("paper");
         }
-        else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-            this.data.input_handler.scissors();
+        else if (this.data.s_key.justDown) {
+            console.log("scissors");
         }
     },
     wallCollision: function() {},
