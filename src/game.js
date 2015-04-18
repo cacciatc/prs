@@ -1,5 +1,5 @@
-Maze.Game = function(game) {};
-Maze.Game.prototype = {
+PRS.Game = function(game) {};
+PRS.Game.prototype = {
     create: function() {},
     initLevels: function() {},
     showLevel: function(level) {},
