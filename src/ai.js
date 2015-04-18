@@ -13,21 +13,17 @@ var character = function() {
     }
 }
 
-var AI = function(){};
-
-AI.prototype = character();
-
 var rockman = function(){};
-rockman.prototype  = AI;
-rockman.tell  = function(gs) { return ROCK; }
-rockman.shoot = function(gs) { gs.engine.shoot_ai(ROCK); }
+rockman.prototype  = character();
+rockman.prototype.tell  = function(gs) { return ROCK; }
+rockman.prototype.shoot = function(gs) { return ROCK; }
 
 var scissorman = function(){};
-scissorman.prototype  = AI;
-scissorman.tell  = function(gs) { return SCISSORS; }
-scissorman.shoot = function(gs) { gs.engine.shoot_ai(SCISSORS); }
+scissorman.prototype  = character();
+scissorman.prototype.tell  = function(gs) { return SCISSORS; }
+scissorman.prototype.shoot = function(gs) { return SCISSORS; }
 
 var paperman = function(){};
-paperman.prototype  = AI;
-paperman.tell  = function(gs) { return PAPER; }
-paperman.shoot = function(gs) { gs.engine.shoot_ai(PAPER); }
+paperman.prototype  = character();
+paperman.prototype.tell  = function(gs) { return PAPER; }
+paperman.prototype.shoot = function(gs) { return PAPER; }

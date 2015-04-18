@@ -7,7 +7,7 @@ describe('engine watches each round and updates the game accordingly', function(
     beforeEach(function(){
         dummyHero = new character();
 
-        dummyAI   = new AI();
+        dummyAI   = new character();
 
         dummyGame = {
             data: {
