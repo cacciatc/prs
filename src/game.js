@@ -23,17 +23,9 @@ PRS.Game.prototype = {
             Phaser.Keyboard.P 
         ]);
 
-        /* match object to generated per level */
-        var match = {
-            enemy_portrait_box: 'enemy_portrait_box',
-            enemy_portrait:     'enemy_portrait',
-            enemy_name:         'P. PAPYRUS',
-            stage:              '1'
-        };
-
         /* create the GUI */
         this.data.gui = new GUI();
-        this.data.gui.generate(this.game, match);
+        this.data.gui.generate(this.game, this.game.match);
 
         this.data.resultSet = [];
     },

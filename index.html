@@ -29,6 +29,35 @@
         }
     };
 
+    game.matches = [
+        {
+            enemy_portrait_box: 'enemy_portrait_box',
+            enemy_portrait:     'enemy_portrait',
+            enemy_name:         'P. PAPYRUS',
+            stage:              '1'
+        },
+        {
+            enemy_portrait_box: 'enemy_portrait_box',
+            enemy_portrait:     'enemy_portrait',
+            enemy_name:         'BLARG',
+            stage:              '2'
+        },
+        {
+            enemy_portrait_box: 'enemy_portrait_box',
+            enemy_portrait:     'enemy_portrait',
+            enemy_name:         'BLARG',
+            stage:              '3'
+        },
+        {
+            enemy_portrait_box: 'enemy_portrait_box',
+            enemy_portrait:     'enemy_portrait',
+            enemy_name:         'W. OLLER',
+            stage:              '4'
+        }
+    ];
+
+    game.match = game.matches[0];
+
     game.state.add('Boot', PRS.Boot);
     game.state.add('Preloader', PRS.Preloader);
     game.state.add('MainMenu', PRS.MainMenu);

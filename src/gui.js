@@ -5,9 +5,11 @@ function GUI() {
 
 	this.hero_portrait		 = null;
 	this.hero_portrait_box   = null;
+	this.hero_portrait_mask  = null;
 
 	this.enemy_portrait		 = null;
 	this.enemy_portrait_box  = null;
+	this.enemy_portrait_mask = null;
 
 	this.hero_name 			 = null;
 	this.enemy_name			 = null;
@@ -81,14 +83,28 @@ GUI.prototype.generate = function(game, match) {
 	*/
 
 	/* add portraits */
-	this.hero_portrait_box = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait_box');
-	this.hero_portrait 	   = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait', 0);
+	this.hero_portrait_box  = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait_box');
+	this.hero_portrait 	    = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait', 0);
+
+	/* setup mask */
+	this.hero_portrait_mask = game.add.graphics(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y);
+    this.hero_portrait_mask.beginFill(0xffffff);
+    this.hero_portrait_mask.drawRect(15, 15, 160, 300);
+
+    this.hero_portrait.mask = this.hero_portrait_mask; 
 
 	this.hero_portrait.animations.add('normal',[0]);
 	this.hero_portrait.animations.add('hurt',  [0]);
 
 	this.enemy_portrait_box = game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait_box);
 	this.enemy_portrait 	= game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
+
+	/* setup mask */
+	this.enemy_portrait_mask = game.add.graphics(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y);
+    this.enemy_portrait_mask.beginFill(0xffffff);
+    this.enemy_portrait_mask.drawRect(15, 15, 160, 300);
+
+    this.enemy_portrait.mask = this.enemy_portrait_mask;
 
 	this.enemy_portrait.animations.add('normal',[0]);
 	this.enemy_portrait.animations.add('hurt',  [1]);
