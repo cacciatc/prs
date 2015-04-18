@@ -30,9 +30,9 @@ GUI.ENEMY_AVATAR_Y = 20;
 GUI.prototype.generate = function(game, match) {
 	/* add button sprites */
 	/*
-	this.rock_sprite_btn 	 = game.add.sprite(GUI.ROCK_BTN_X, GUI.ROCK_BTN_Y, 'input-buttons', 0);
-	this.paper_sprite_btn 	 = game.add.sprite(GUI.PAPER_BTN_X, GUI.PAPER_BTN_Y, 'input-buttons', 1);
-	this.scissors_sprite_btn = game.add.sprite(GUI.SCISSORS_BTN_X, GUI.SCISSORS_BTN_Y), 'input-buttons', 2);
+	this.rock_sprite_btn 	 = game.add.sprite(GUI.ROCK_BTN_X, GUI.ROCK_BTN_Y, 'input_buttons', 0);
+	this.paper_sprite_btn 	 = game.add.sprite(GUI.PAPER_BTN_X, GUI.PAPER_BTN_Y, 'input_buttons', 1);
+	this.scissors_sprite_btn = game.add.sprite(GUI.SCISSORS_BTN_X, GUI.SCISSORS_BTN_Y), 'input_buttons', 2);
 	*/
 
 	/* add portraits */
@@ -54,6 +54,16 @@ GUI.prototype.generate = function(game, match) {
 
 	this.enemy_portrait.scale.x = 0.5;
 	this.enemy_portrait.scale.y = 0.5;
+};
+
+/* called when hero loses a round */
+GUI.prototype.hurt_hero = function() {
+
+};
+
+/* called when hero loses a round */
+GUI.prototype.hurt_enemy = function() {
+
 };
 
 /* probably only needed for touch/mouse clicks */
