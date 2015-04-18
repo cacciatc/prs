@@ -21,8 +21,15 @@ PRS.Game.prototype = {
             Phaser.Keyboard.P 
         ]);
 
+        /* match object to generated per level */
+        var match = {
+            enemy_portrait_box: 'enemy_portrait_box',
+            enemy_portrait:     'enemy_portrait'
+        };
+
         /* create the GUI */
         this.data.gui = new GUI();
+        this.data.gui.generate(this.game, match);
     },
     initLevels: function() {},
     showLevel: function(level) {},
@@ -39,6 +46,8 @@ PRS.Game.prototype = {
         else if (this.data.s_key.justDown) {
             console.log("scissors");
         }
+
+        this.data.gui.update();
     },
     wallCollision: function() {},
     handleOrientation: function(e) {},

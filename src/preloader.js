@@ -13,12 +13,12 @@ PRS.Preloader.prototype = {
         /* portraits */
         this.load.image('hero_portrait', 'assets/gfx/avatar.png');
         this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
-        
-        this.load.image('rockman_portrait', 'assets/gfx/avatar.png');
-        this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
+
+        this.load.image('enemy_portrait', 'assets/gfx/avatar.png');
+        this.load.image('enemy_portrait_box', 'assets/gfx/avatar-box.png');
 
         /* gui */
-        //this.load.spritesheet('input-buttons', 'assets/gfx/input_buttons.png', 64, 64);
+        //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
 
         /* sfx */
     },

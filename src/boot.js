@@ -1,6 +1,6 @@
 var PRS = {
     _WIDTH: 800,
-    _HEIGHT: 600
+    _HEIGHT: 500
 };
 PRS.Boot = function(game) {};
 PRS.Boot.prototype = {
