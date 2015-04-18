@@ -1,13 +1,15 @@
-// AI interface
-// factory methods
-// next_move(game_state)
-// next_tell(game_state)
-
 var character = function() {
+    var health = 100;
+
     return {
         tieShoot:  function(){},
         winShoot:  function(){},
-        loseShoot: function(){},
+        loseShoot: function(){
+            this.health = this.health - 15;
+        },
+        getHealth: function(){
+            return this.health;
+        }
     }
 }
 
