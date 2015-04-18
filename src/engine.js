@@ -3,15 +3,17 @@ var engine = function(game) {
     var ai   = game.data.ai;
 
     var roundOver = false;
+    var roundWinner = '';
 
     startRound = function() {
         if (roundOver) {
-            data.ai_shot   = null;
-            data.hero_shot = null;
+            game.data.ai_shot   = null;
+            game.data.hero_shot = null;
+            this.roundOver = false;
         }
     };
 
-    shoot_ai =    function(move) {
+    shoot_ai = function(move) {
         game.data.ai_shot = move;
         this.shoot_result();
     };
@@ -22,34 +24,44 @@ var engine = function(game) {
     };
 
     shoot_result = function() {
-        if (game.data.ai_shot   === null) return;
-        if (game.data.hero_shot === null) return;
+        if (game.data.ai_shot   == null) return;
+        if (game.data.hero_shot == null) return;
 
         // tie game
         if (game.data.ai_shot === game.data.hero_shot) {
             //console.debug(game.data.resultSet);
             game.data.resultSet.push("TIE");
+            this.roundWinner = "TIE";
             hero.tieShoot();
             ai.tieShoot();
-            roundOver = true;
-            return;
-        }
-
-        // there is a winner
-        var winner = roshambo(game.data.hero_shot, game.data.ai_shot);
-        game.data.resultSet.push(winner);
-
-        if (winner === game.data.hero_shot) {
-            hero.winShoot();
-            ai.loseShoot();
         }
         else
         {
-            hero.loseShoot();
-            ai.winShoot();
+            // there is a winner
+            var winner = roshambo(game.data.hero_shot, game.data.ai_shot);
+            game.data.resultSet.push(winner);
+
+            if (winner === game.data.hero_shot) {
+                hero.winShoot();
+                this.roundWinner = "HERO";
+                ai.loseShoot();
+            }
+            else
+            {
+                hero.loseShoot();
+                this.roundWinner = "AI";
+                ai.winShoot();
+            }
         }
 
         roundOver = true;
+
+        console.log(hero);
+        console.log(hero.getHealth);
+        console.log(hero.getHealth());
+        console.log("winner: " + this.roundWinner);
+        console.log("Hero: " + hero.getHealth());
+        console.log("AI: " + ai.getHealth());
     };
 
     return {
@@ -57,7 +69,7 @@ var engine = function(game) {
         shoot_user:   shoot_user,
         shoot_result: shoot_result,
         isRoundOver:  function(){ return this.roundOver; },
-        startRound: startRound,
+        startRound:   startRound,
     }
 }
 

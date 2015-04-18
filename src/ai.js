@@ -5,10 +5,10 @@ var character = function() {
         tieShoot:  function(){},
         winShoot:  function(){},
         loseShoot: function(){
-            this.health = this.health - 15;
+            health = health - 15;
         },
         getHealth: function(){
-            return this.health;
+            return health;
         }
     }
 }
