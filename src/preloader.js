@@ -11,10 +11,10 @@ PRS.Preloader.prototype = {
         /* gfx */
 
         /* portraits */
-        this.load.image('hero_portrait', 'assets/gfx/avatar.png');
+        this.load.spritesheet('hero_portrait', 'assets/gfx/avatar.png', 381, 438);
         this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
 
-        this.load.image('enemy_portrait', 'assets/gfx/avatar.png');
+        this.load.spritesheet('enemy_portrait', 'assets/gfx/avatar-sprite.png', 381, 438);
         this.load.image('enemy_portrait_box', 'assets/gfx/avatar-box.png');
 
         /* gui */

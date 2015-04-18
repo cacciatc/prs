@@ -10,7 +10,7 @@ function GUI() {
 	this.enemy_portrait_box  = null;
 
 	this._shake_tween = null;
-	this.shake = function(game, portrait, done_callback) {
+	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
 			return;
 
@@ -22,23 +22,20 @@ function GUI() {
 	    	.to({x:"-20"}, 50, Phaser.Easing.Bounce.InOut)
 	    	.to({x:"+20"}, 50, Phaser.Easing.Bounce.InOut)
 	    	.to({x:"-20"}, 50, Phaser.Easing.Bounce.InOut)
-	    	.to({x:"+10"}, 50, Phaser.Easing.Bounce.InOut);
-    	//tween.onComplete.add(done_callback, this);
+	    	.to({x:"+10"}, 50, Phaser.Easing.Bounce.InOut)
+    		.onComplete.add(function () {
+    			portrait.play('normal');
+    		}, this);
 
     	this._shake_tween.start();
 	};
 
-	this.change_portrait = function(portrait) {
-
-	};
-
 	this.hurt_portrait = function(game, portrait) {
 		/* change face */
+		portrait.play('hurt', 1, false);
 
 		/* shake portrait for 3 sec */
 		this.shake(game, portrait);
-
-		/* change face after 5 sec */
 	};
 };
 
@@ -69,10 +66,16 @@ GUI.prototype.generate = function(game, match) {
 
 	/* add portraits */
 	this.hero_portrait_box = game.add.sprite(GUI.HERO_AVATAR_Y, GUI.HERO_AVATAR_X, 'hero_portrait_box');
-	this.hero_portrait 	   = game.add.sprite(GUI.HERO_AVATAR_Y, GUI.HERO_AVATAR_X, 'hero_portrait');
+	this.hero_portrait 	   = game.add.sprite(GUI.HERO_AVATAR_Y, GUI.HERO_AVATAR_X, 'hero_portrait', 0);
+
+	this.hero_portrait.animations.add('normal',[0]);
+	this.hero_portrait.animations.add('hurt',  [0]);
 
 	this.enemy_portrait_box = game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait_box);
-	this.enemy_portrait 	= game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait);
+	this.enemy_portrait 	= game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
+
+	this.enemy_portrait.animations.add('normal',[0]);
+	this.enemy_portrait.animations.add('hurt',  [1]);
 
 	/* shouldn't have to be scaled in the end */
 	this.hero_portrait_box.scale.x = 0.5;
