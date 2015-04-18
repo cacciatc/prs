@@ -3,27 +3,17 @@
 // next_move(game_state)
 // next_tell(game_state)
 
-function AI() {
+var character = function() {}
 
-};
+character.prototype.tieShoot  = function(){};
+character.prototype.winShoot  = function(){};
+character.prototype.loseShoot = function(){};
 
-AI.ROCK  	= 1;
-AI.PAPER 	= 2;
-AI.SCISSORS = 3;
+var AI = function(){};
 
-AI.create_rockman = function() {
-	var ai = new AI();
+AI.prototype = character;
 
-	// setup ai here
-	return ai;
-};
-
-/* returns the next move given game state gs */
-AI.prototype.next_move = function(gs) {
-	return AI.ROCK;
-};
-
-/* returns the next tell given game state gs */
-AI.prototype.next_tell = function(gs) {
-	return AI.ROCK;
-};
+var rockman = function(){};
+rockman.prototype  = AI;
+rockman.tell  = function(gs) { return ROCK; }
+rockman.shoot = function(gs) { gs.engine.shoot_ai(ROCK); }
