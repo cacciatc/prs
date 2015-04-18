@@ -43,9 +43,11 @@ PRS.Game.prototype = {
     update: function() {
         if (this.data.r_key.justDown) {
             console.log("rock");
+            this.data.gui.hurt_hero(this.game);
         }
         else if (this.data.p_key.justDown) {
             console.log("paper");
+            this.data.gui.hurt_enemy(this.game);
         }
         else if (this.data.s_key.justDown) {
             console.log("scissors");

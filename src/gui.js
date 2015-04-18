@@ -8,6 +8,38 @@ function GUI() {
 
 	this.enemy_portrait		 = null;
 	this.enemy_portrait_box  = null;
+
+	this._shake_tween = null;
+	this.shake = function(game, portrait, done_callback) {
+		if(this._shake_tween!= null && this._shake_tween.isRunning)
+			return;
+
+		this._shake_tween  = game.add.tween(portrait);
+
+    	this._shake_tween
+	    	.to({x:"-10"}, 50, Phaser.Easing.Bounce.InOut)
+	    	.to({x:"+20"}, 50, Phaser.Easing.Bounce.InOut)
+	    	.to({x:"-20"}, 50, Phaser.Easing.Bounce.InOut)
+	    	.to({x:"+20"}, 50, Phaser.Easing.Bounce.InOut)
+	    	.to({x:"-20"}, 50, Phaser.Easing.Bounce.InOut)
+	    	.to({x:"+10"}, 50, Phaser.Easing.Bounce.InOut);
+    	//tween.onComplete.add(done_callback, this);
+
+    	this._shake_tween.start();
+	};
+
+	this.change_portrait = function(portrait) {
+
+	};
+
+	this.hurt_portrait = function(game, portrait) {
+		/* change face */
+
+		/* shake portrait for 3 sec */
+		this.shake(game, portrait);
+
+		/* change face after 5 sec */
+	};
 };
 
 /* button positions */
@@ -57,13 +89,13 @@ GUI.prototype.generate = function(game, match) {
 };
 
 /* called when hero loses a round */
-GUI.prototype.hurt_hero = function() {
-
+GUI.prototype.hurt_hero = function(game) {
+	this.hurt_portrait(game, this.hero_portrait);
 };
 
 /* called when hero loses a round */
-GUI.prototype.hurt_enemy = function() {
-
+GUI.prototype.hurt_enemy = function(game) {
+	this.hurt_portrait(game, this.enemy_portrait);
 };
 
 /* probably only needed for touch/mouse clicks */
