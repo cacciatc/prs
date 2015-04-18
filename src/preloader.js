@@ -10,6 +10,7 @@ PRS.Preloader.prototype = {
         //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
     },
     create: function() {
+        console.log("In preloader");
         this.game.state.start('MainMenu');
     }
 };
