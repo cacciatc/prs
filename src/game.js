@@ -20,6 +20,9 @@ PRS.Game.prototype = {
             Phaser.Keyboard.S, 
             Phaser.Keyboard.P 
         ]);
+
+        /* create the GUI */
+        this.data.gui = new GUI();
     },
     initLevels: function() {},
     showLevel: function(level) {},

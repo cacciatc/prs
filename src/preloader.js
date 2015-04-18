@@ -5,9 +5,22 @@ PRS.Preloader.prototype = {
         //this.preloadBar = this.add.sprite((Ball._WIDTH-158)*0.5, (Ball._HEIGHT-50)*0.5, 'preloaderBar');
         //this.load.setPreloadSprite(this.preloadBar);
 
-        //this.load.image('ball', 'img/ball.png');
         //this.load.spritesheet('button-start', 'img/button-start.png', 146, 51);
         //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
+
+        /* gfx */
+
+        /* portraits */
+        this.load.image('hero_portrait', 'assets/gfx/avatar.png');
+        this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
+        
+        this.load.image('rockman_portrait', 'assets/gfx/avatar.png');
+        this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
+
+        /* gui */
+        //this.load.spritesheet('input-buttons', 'assets/gfx/input_buttons.png', 64, 64);
+
+        /* sfx */
     },
     create: function() {
         console.log("In preloader");
