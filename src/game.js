@@ -14,6 +14,8 @@ PRS.Game.prototype = {
         this.data.s_key = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
         this.data.p_key = this.game.input.keyboard.addKey(Phaser.Keyboard.P);
 
+        this.engine = engine(this);
+
         /* stop keys from propagating */
         this.game.input.keyboard.addKeyCapture([ 
             Phaser.Keyboard.R, 
@@ -51,5 +53,71 @@ PRS.Game.prototype = {
     },
     wallCollision: function() {},
     handleOrientation: function(e) {},
-    finishLevel: function() {}
+    finishLevel: function() {},
+
+
 };
+
+var ROCK     = 1;
+var PAPER    = 2;
+var SCISSORS = 3;
+
+var roshambo = function(a, b) {
+    if (b === SCISSORS && a === ROCK) {
+        return a;
+    }
+
+    if (a === SCISSORS && b === ROCK) {
+        return b;
+    }
+
+    if (a >= b) {
+        return a;
+    } 
+
+    return b;
+}
+
+var engine = function(game) {
+    var hero = game.data.hero;
+    var ai   = game.data.ai;
+
+    shoot_ai =    function(move) {
+        game.data.ai_shot = move;
+        this.shoot_result();
+    };
+
+    shoot_user = function(move) {
+        game.data.user_shot = move;
+        this.shoot_result();
+    };
+
+    shoot_result = function() {
+        if (game.data.ai_shot   === undefined) return;
+        if (game.data.user_shot === undefined) return;
+
+        // tie game
+        if (game.data.ai_shot === game.data.user_shot) {
+            game.data.resultSet.push("TIE");
+            hero.tieShoot();
+            ai.tieShoot();
+            return;
+        }
+
+        // there is a winner
+        var winner = roshambo(game.data.user_shot, game.data.ai_shot);
+        game.data.resultSet.push(winner);
+
+        if (winner === game.data.user_shot) {
+            hero.winShoot();
+            ai.winShoot();
+        }
+        else
+        {
+            hero.winShoot();
+            ai.winShoot();
+        }
+};
+}
+
+
