@@ -27,7 +27,7 @@ PRS.Preloader.prototype = {
         this.load.image('hand', 'assets/gfx/hand.png');
 
         /* background */
-        this.load.image('background', 'assets/gfx/level.png');
+        this.load.image('background', 'assets/gfx/level-3.png');
 
         /* gui */
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);

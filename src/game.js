@@ -14,9 +14,9 @@ PRS.Game.prototype = {
         this.data.hero = new character();
 
         /* setup input */
-        this.data.r_key = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
-        this.data.s_key = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
-        this.data.p_key = this.game.input.keyboard.addKey(Phaser.Keyboard.P);
+        this.data.r_key = this.game.input.keyboard.addKey(Phaser.Keyboard.Q);
+        this.data.s_key = this.game.input.keyboard.addKey(Phaser.Keyboard.E);
+        this.data.p_key = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
 
         this.engine = new engine(this);
         this.engine.startRound();
