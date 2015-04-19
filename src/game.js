@@ -31,7 +31,9 @@ PRS.Game.prototype = {
         /* create the GUI */
         this.data.gui = new GUI();
         this.data.gui.generate(this.game, this.game.match);
-
+        
+        this.data.nobodyIsShooting = true;
+        
         this.data.resultSet = [];
     },
     initLevels: function() {},
@@ -39,32 +41,21 @@ PRS.Game.prototype = {
     updateCounter: function() {},
     managePause: function() {},
     manageAudio: function() {},
-    update: function() {
 
-        var roundJustRan = false;
+    fireShoot: function(move) {
+        this.data.nobodyIsShooting = false;
 
-        if (this.engine.hasRoundStarted()) {
+        var tween = this.data.gui.reveal(this.game);
+        tween.onComplete.add(function(){
+            this.engine.shoot_user(move);
             // AI just shoots when user does
-            if (this.data.r_key.justDown) {
-                console.debug("R");
-                this.engine.shoot_user(ROCK);
-                this.engine.shoot_ai(this.data.ai.shoot(this));
-            }
-            else if (this.data.p_key.justDown) {
-                console.debug("P");
-                this.engine.shoot_user(PAPER);
-                this.engine.shoot_ai(this.data.ai.shoot(this));
-            }
-            else if (this.data.s_key.justDown) {
-                console.debug("S");
-                this.data.gui.reveal(this.game);
-                this.engine.shoot_user(SCISSORS);
-                this.engine.shoot_ai(this.data.ai.shoot(this));
-            }
-            roundJustRan = true;
-        }
+            this.engine.shoot_ai(this.data.ai.shoot(this));
+            this.finishRound();
+        }, this);
+    },
 
-        if (roundJustRan && !this.engine.hasRoundStarted()) {
+    finishRound: function(){
+        if (this.engine.hasRoundEnded()) {
             console.log("roundWinner" + this.engine.roundWinner);
             
             if (this.engine.roundWinner == 'HERO') {
@@ -84,10 +75,33 @@ PRS.Game.prototype = {
                 (new MatchOverGUI()).generate(this.game);
 
             } else {
+                this.data.nobodyIsShooting = true;
                 this.engine = new engine(this);
                 this.engine.startRound();
             }
         }
+    },
+
+    update: function() {
+        // Read the justDown getter here so it gets 
+        // reset on every loop rather than stack up.
+        var rPress = this.data.r_key.justDown;
+        var pPress = this.data.p_key.justDown;
+        var sPress = this.data.s_key.justDown;
+
+        if (this.engine.hasRoundStarted() && this.data.nobodyIsShooting) {
+
+            if (rPress) {
+                this.fireShoot(ROCK);
+            }
+            else if (pPress) {
+                this.fireShoot(PAPER);
+            }
+            else if (sPress) {
+                this.fireShoot(SCISSORS);
+            }            
+        }
+
 
         this.data.gui.update();
     },

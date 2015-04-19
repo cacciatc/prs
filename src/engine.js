@@ -70,7 +70,8 @@ var engine = function(game) {
         shoot_ai:     shoot_ai,
         shoot_user:   shoot_user,
         shoot_result: shoot_result,
-        hasRoundStarted:  function(){ return !roundOver; },
+        hasRoundStarted: function(){ return !roundOver; },
+        hasRoundEnded:   function(){ return roundOver; },
         startRound:   startRound,
     }
 }

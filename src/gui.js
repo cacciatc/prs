@@ -55,6 +55,7 @@ function GUI() {
 	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In);
 
     	this._shake_enemy_tween.start();
+    	return this._shake_enemy_tween;
 	};
 
 	this.hurt_portrait = function(game, portrait) {
@@ -181,7 +182,7 @@ GUI.prototype.hurt_enemy = function(game) {
 GUI.prototype.reveal = function(game) {
 	//game.add.tween(this.enemy_hand).to( { y: "-100", x:"50" }, 2000, Phaser.Easing.Linear.None, true);
 	//game.add.tween(this.enemy_hand).to( { angle: 45 }, 2000, Phaser.Easing.Linear.None, true);
-	this.shake_hands(game);
+	return this.shake_hands(game);
 };
 
 /* called when there is a tie */

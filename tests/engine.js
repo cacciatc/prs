@@ -61,10 +61,10 @@ describe('engine watches each round and updates the game accordingly', function(
 
     it('handles Round State', function(){
         var e = engine(dummyGame);
-        expect(e.isRoundOver() == false);
+        expect(e.hasRoundEnded() == false);
         e.shoot_ai(ROCK);
         e.shoot_user(ROCK);
-        expect(e.isRoundOver() == true);
+        expect(e.hasRoundEnded() == true);
 
     });
 });
