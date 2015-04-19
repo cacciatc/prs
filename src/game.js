@@ -5,7 +5,11 @@ PRS.Game.prototype = {
     data: { },
     engine: null,
     create: function() {
-        console.log("In game state");
+        /* maybe load this in a previous state */
+        this.data.music = this.game.add.audio('music');
+        this.data.music.loop = true;
+        this.data.music.volume = 0.7;
+        this.data.music.play();
 
         var background = this.game.add.sprite(0, 0, 'background');
 
@@ -105,11 +109,17 @@ PRS.Game.prototype = {
         if(this.game.is_paused) {
             this.game.input.keyboard.enabled = false;
             this.game.world.alpha = 0.7;
+            if(this.data.music.isPlaying) {
+                this.data.music.stop();
+            }
             return;
         }
         else {
             this.game.input.keyboard.enabled = true;
             this.game.world.alpha = 1.0;
+            if(!this.data.music.isPlaying) {
+                this.data.music.play();
+            }
         }
 
         var rPress = this.data.r_key.justDown;
