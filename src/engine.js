@@ -56,19 +56,22 @@ var engine = function(game) {
 
         roundOver = true;
 
+/*
+        console.log("roundOver: " + roundOver);
         console.log(hero);
         console.log(hero.getHealth);
         console.log(hero.getHealth());
         console.log("winner: " + this.roundWinner);
         console.log("Hero: " + hero.getHealth());
         console.log("AI: " + ai.getHealth());
+        */
     };
 
     return {
         shoot_ai:     shoot_ai,
         shoot_user:   shoot_user,
         shoot_result: shoot_result,
-        isRoundOver:  function(){ return this.roundOver; },
+        isRoundOver:  function(){ return roundOver; },
         startRound:   startRound,
     }
 }

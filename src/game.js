@@ -8,7 +8,7 @@ PRS.Game.prototype = {
         console.log("In game state");
 
         /* create ai */
-        this.data.ai = new rockman();
+        this.data.ai   = new rockman();
         this.data.hero = new character();
 
         /* setup input */
@@ -39,13 +39,14 @@ PRS.Game.prototype = {
     manageAudio: function() {},
     update: function() {
 
+        var roundJustRan = false;
+
         if (!this.engine.isRoundOver()) {
             // AI just shoots when user does
             if (this.data.r_key.justDown) {
                 console.debug("R");
                 this.engine.shoot_user(ROCK);
                 this.engine.shoot_ai(this.data.ai.shoot(this));
-                console.log(this.engine);
             }
             else if (this.data.p_key.justDown) {
                 console.debug("P");
@@ -57,27 +58,29 @@ PRS.Game.prototype = {
                 this.engine.shoot_user(SCISSORS);
                 this.engine.shoot_ai(this.data.ai.shoot(this));
             }
+            roundJustRan = true;
         }
 
-        if (this.engine.isRoundOver()) {
-            console.log('Round Over');
+        if (roundJustRan && this.engine.isRoundOver()) {
+            console.log("roundWinner" + this.engine.roundWinner);
             
             if (this.engine.roundWinner == 'HERO') {
                 this.data.gui.hurt_enemy(this.game);
             } else if (this.engine.roundWinner == 'AI') {
                 this.data.gui.hurt_hero(this.game);
             } else {
-                console.log('TIE');
+                // stub
+                // this.data.gui.tie(this.game);
             }
 
             if (this.data.ai.getHealth() < 0) {
                 console.log('you win');
-            }
-
-            if (this.data.hero.getHealth() < 0) {
+            } else if (this.data.hero.getHealth() < 0) {
                 console.log('you win');
+            } else {
+                this.engine = new engine(this);
+                this.engine.startRound();
             }
-            console.log(this.engine);
         }
 
         this.data.gui.update();
