@@ -63,7 +63,6 @@ var engine = function(game) {
         //console.log("winner: " + this.roundWinner);
         console.log("Hero: " + hero.getHealth());
         console.log("AI: " + ai.getHealth());
-        
     };
 
     return {

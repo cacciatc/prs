@@ -59,9 +59,9 @@ PRS.Game.prototype = {
             console.log("roundWinner" + this.engine.roundWinner);
             
             if (this.engine.roundWinner == 'HERO') {
-                this.data.gui.hurt_enemy(this.game);
+                this.data.gui.hurt_enemy(this.game, this.data.ai.getHealth());
             } else if (this.engine.roundWinner == 'AI') {
-                this.data.gui.hurt_hero(this.game);
+                this.data.gui.hurt_hero(this.game, this.data.hero.getHealth());
             } else {
                 this.data.gui.tie(this.game);
             }

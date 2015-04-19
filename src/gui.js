@@ -22,6 +22,9 @@ function GUI() {
 	this.enemy_hand			 = null;
 	this.hero_hand			 = null;
 
+	this.hero_health		 = null;
+	this.enemy_health		 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -74,6 +77,25 @@ function GUI() {
 		/* shake portrait for 3 sec */
 		this.shake(game, portrait);
 	};
+
+	this._health_tween = null;
+	this.reduce_health = function(game, health, amt) {
+		if(this._health_tween!= null && this._health_tween.isRunning)
+			return;
+
+		this._health_tween = game.add.tween(health);
+
+		var per = amt/100;
+		if(per > 1) {
+			per = 1;
+		}
+		else if(per < 0) {
+			per = 0;
+		}
+
+		this._health_tween.to({width:per}, 500, Phaser.Easing.Elastic.Out);
+		this._health_tween.start();
+	};
 };
 
 /* button positions */
@@ -105,6 +127,12 @@ GUI.STAGE_Y		 = 5;
 
 GUI.ENEMY_HAND_X = 420;
 GUI.ENEMY_HAND_Y = 200;
+
+GUI.HERO_HEALTH_X = 163;
+GUI.HERO_HEALTH_Y = 33;
+
+GUI.ENEMY_HEALTH_X = 451;
+GUI.ENEMY_HEALTH_Y = 33;
 
 /* given a game object add gui elements */
 GUI.prototype.generate = function(game, match) {
@@ -158,8 +186,21 @@ GUI.prototype.generate = function(game, match) {
 
 	/* hands */
 	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);
+
 	this.hero_hand = game.add.sprite(400, 350, 'hand', 0);
 	this.hero_hand.angle = 180
+
+	this.enemy_portrait_mask.beginFill(0xffffff);
+    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
+
+	/* health bars */
+	this.hero_health = game.add.graphics(GUI.HERO_HEALTH_X, GUI.HERO_HEALTH_Y);
+	this.hero_health.beginFill(0x38b449);
+	this.hero_health.drawRect(0, 0, 177, 21);
+
+	this.enemy_health = game.add.graphics(GUI.ENEMY_HEALTH_X, GUI.ENEMY_HEALTH_Y);
+	this.enemy_health.beginFill(0x38b449);
+	this.enemy_health.drawRect(0, 0, 177, 21);
 
 	/* shouldn't have to be scaled in the end */
 	this.hero_portrait_box.scale.x = 0.35;
@@ -176,17 +217,21 @@ GUI.prototype.generate = function(game, match) {
 };
 
 /* called when hero loses a round */
-GUI.prototype.hurt_hero = function(game) {
+GUI.prototype.hurt_hero = function(game, amt) {
 	this.hurt_portrait(game, this.hero_portrait);
 	if(this.hero_ouch != null && !this.hero_ouch.isPlaying)
 		this.hero_ouch.play();
+
+	this.reduce_health(game, this.hero_health, amt);
 };
 
 /* called when hero loses a round */
-GUI.prototype.hurt_enemy = function(game) {
+GUI.prototype.hurt_enemy = function(game, amt) {
 	this.hurt_portrait(game, this.enemy_portrait);
 	if(this.enemy_ouch != null && !this.enemy_ouch.isPlaying)
 		this.enemy_ouch.play();
+
+	this.reduce_health(game, this.enemy_health, amt)
 };
 
 /* called to start the reveal */
@@ -194,6 +239,7 @@ GUI.prototype.reveal = function(game) {
 	//game.add.tween(this.enemy_hand).to( { y: "-100", x:"50" }, 2000, Phaser.Easing.Linear.None, true);
 	//game.add.tween(this.enemy_hand).to( { angle: 45 }, 2000, Phaser.Easing.Linear.None, true);
 	return this.shake_hands(game);
+	/* TODO: need to get the timing for the final state for the image (paper, rock, scissors) */
 };
 
 /* called when there is a tie */
