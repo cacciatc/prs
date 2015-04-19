@@ -56,6 +56,13 @@ function GUI() {
 
 		var tink1 = game.add.audio('tink1');
 		var tink2 = game.add.audio('tink2');
+
+		if (Math.random() < 0.5) {
+			var tmp = tink1;
+			tink1 = tink2;
+			tink2 = tmp;
+		}
+
 		var hero_hand = this.hero_hand;
 
 	    var t1;
