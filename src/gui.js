@@ -23,7 +23,8 @@ function GUI() {
 	this.hero_health		 = null;
 	this.enemy_health		 = null;
 
-	this.tink				 = null;
+	this.tink1				 = null;
+	this.tink2				 = null;
 
 	this.pause				 = null;
 
@@ -53,7 +54,8 @@ function GUI() {
 		this._shake_enemy_tween  = game.add.tween(this.enemy_hand);
 		this._shake_hero_tween  = game.add.tween(this.hero_hand);
 
-		var tink = game.add.audio('tink');
+		var tink1 = game.add.audio('tink1');
+		var tink2 = game.add.audio('tink2');
 		var hero_hand = this.hero_hand;
 
 	    var t1;
@@ -74,8 +76,8 @@ function GUI() {
 		};
 		var shake1Sound = function(){
 			/* Just play the sound. Timing has to match shake1(); */ 
-	    	game.time.events.add(300,  function(){ tink.play(); });
-	    	game.time.events.add(1000, function(){ tink.play(); });
+	    	game.time.events.add(300,  function(){ tink2.play(); });
+	    	game.time.events.add(1000, function(){ tink1.play(); });
 	    	// TODO: this should be the "shoot" sound I think
 	    	//game.time.events.add(1600, function(){ tink.play(); });
 		};

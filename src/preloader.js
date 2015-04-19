@@ -45,7 +45,8 @@ PRS.Preloader.prototype = {
         this.load.audio('arch_ow', 'assets/sfx/archibaldow.mp3');
         this.load.audio('slater_ow', 'assets/sfx/slaterow.mp3');
         // hero ouch
-        this.load.audio('tink', 'assets/sfx/tink.mp3');
+        this.load.audio('tink1', 'assets/sfx/newtink2.mp3');
+        this.load.audio('tink2', 'assets/sfx/newtink3.mp3');
 
     },
     create: function() {
