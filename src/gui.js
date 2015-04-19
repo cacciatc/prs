@@ -178,12 +178,12 @@ GUI.prototype.generate = function(game, match) {
 	*/
 
 	/* add portraits */
-	this.hero_portrait 	    = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait', 0);
+	this.hero_portrait = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait', 0);
 
 	this.hero_portrait.animations.add('normal',[0]);
 	this.hero_portrait.animations.add('hurt',  [1]);
 
-	this.enemy_portrait 	= game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
+	this.enemy_portrait = game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
 
 	/* setup mask */
 	this.enemy_portrait_mask = game.add.graphics(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y);
@@ -213,9 +213,14 @@ GUI.prototype.generate = function(game, match) {
 
 	/* hands */
 	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);
+	this.enemy_hand.animations.add('rock', [0]);
+	this.enemy_hand.animations.add('paper', [1]);
+	this.enemy_hand.animations.add('scisssors', [2]);
 
-	this.hero_hand = game.add.sprite(400, 350, 'hand', 0);
-	this.hero_hand.angle = 180
+	this.hero_hand = game.add.sprite(0, 200, 'slater_hand', 0);
+	this.hero_hand.animations.add('rock', [0]);
+	this.hero_hand.animations.add('paper', [1]);
+	this.hero_hand.animations.add('scisssors', [2]);
 
 	this.enemy_portrait_mask.beginFill(0xffffff);
     this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
@@ -265,7 +270,7 @@ GUI.prototype.tie = function(game) {
 	this.hero_portrait.play('hurt', 1, false);
 	this.enemy_portrait.play('hurt', 1, false);
 
-   game.time.events.add(2000,  function() {
+   game.time.events.add(1500,  function() {
     	this.hero_portrait.play('normal', 1, false);
 		this.enemy_portrait.play('normal', 1, false);
     }, this);
@@ -274,4 +279,32 @@ GUI.prototype.tie = function(game) {
 /* probably only needed for touch/mouse clicks */
 GUI.prototype.update = function() {
 
+};
+
+GUI.prototype.hero_hand_anim = function(move) {
+	var a = "";
+	if(move == ROCK) {
+		a = "rock";
+	}
+	else if(move == PAPER) {
+		a = "paper";
+	}
+	else if(move == SCISSORS) {
+		a = "scisssors";
+	}
+	this.hero_hand.play(a);
+};
+
+GUI.prototype.enemy_hand_anim = function(move) {
+	var a = "";
+	if(move == ROCK) {
+		a = "rock";
+	}
+	else if(move == PAPER) {
+		a = "paper";
+	}
+	else if(move == SCISSORS) {
+		a = "scisssors";
+	}
+	this.enemy_hand.play(a);
 };

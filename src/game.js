@@ -52,7 +52,20 @@ PRS.Game.prototype = {
             this.engine.shoot_user(move);
             // AI just shoots when user does
             this.engine.shoot_ai(this.data.ai.shoot(this));
+
+            this.data.gui.hero_hand_anim(move);
+            this.data.gui.enemy_hand_anim(move);
             this.finishRound();
+
+            this.game.time.events.add(1500,  function() {
+                this.data.gui.hero_hand_anim(ROCK);
+                this.data.gui.enemy_hand_anim(ROCK);
+
+                this.data.nobodyIsShooting = true;
+                this.engine = new engine(this);
+                this.engine.startRound();
+            }, this);
+
         }, this);
     },
 
@@ -77,9 +90,9 @@ PRS.Game.prototype = {
                 (new MatchOverGUI()).generate(this.game);
 
             } else {
-                this.data.nobodyIsShooting = true;
-                this.engine = new engine(this);
-                this.engine.startRound();
+                //this.data.nobodyIsShooting = true;
+                //this.engine = new engine(this);
+                //this.engine.startRound();
             }
         }
     },
