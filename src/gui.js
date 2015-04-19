@@ -65,28 +65,26 @@ function GUI() {
 
 		var hero_hand = this.hero_hand;
 
-	    var t1;
 		var shake1 = function(tween){
 			var r1 = Math.random()*50;
 			var r2 = Math.random()*50;
 			var r3 = Math.random()*50;
 
 			tween
-	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500) // 300 = 100 * 3
-	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500) // 1000 = 100 * 5 + 500
-	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In); // 1600 = 100 * 6 + 500 * 2
+	    	.to({y:"-" + (30 + r1)}, 70, Phaser.Easing.Circular.In)
+	    	.to({y:"+" + (30 + r1)}, 70, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r2)}, 70, Phaser.Easing.Circular.In, false, 250) // 210 = 70 * 3
+	    	.to({y:"+" + (30 + r2)}, 70, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r3)}, 70, Phaser.Easing.Circular.In, false, 250) // 600 = 70 * 5 + 250
+	    	.to({y:"+" + (30 + r3)}, 70, Phaser.Easing.Circular.In); // 920 = 70 * 6 + 250 * 2
 
 			return tween;
 		};
 		var shake1Sound = function(){
 			/* Just play the sound. Timing has to match shake1(); */ 
-	    	game.time.events.add(300,  function(){ tink2.play(); });
-	    	game.time.events.add(1000, function(){ tink1.play(); });
-	    	// TODO: this should be the "shoot" sound I think
-	    	//game.time.events.add(1600, function(){ tink.play(); });
+	    	game.time.events.add(210,  function(){ tink2.play(); });
+	    	game.time.events.add(600, function(){ tink2.play(); });
+	    	//game.time.events.add(920, function(){ tink1.play(); });
 		};
 
 		var shake2 = function(tween){
@@ -104,7 +102,7 @@ function GUI() {
 		};
 
 		shake1Sound();
-    	shake2(this._shake_enemy_tween).start();
+    	shake1(this._shake_enemy_tween).start();
     	shake1(this._shake_hero_tween).start();
 
     	return this._shake_enemy_tween;
