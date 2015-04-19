@@ -14,6 +14,7 @@
     <script src="src/game.js"></script>
     <script src="src/ai.js"></script>
     <script src="src/gui.js"></script>
+    <script src="src/match_over_gui.js"></script>
 </head>
 <body>
 <script>
@@ -29,6 +30,7 @@
         }
     };
 
+    game.match_index = 0;
     game.matches = [
         {
             enemy_portrait_box: 'enemy_portrait_box',
@@ -60,7 +62,7 @@
         }
     ];
 
-    game.match = game.matches[0];
+    game.match = game.matches[game.match_index];
 
     game.state.add('Boot', PRS.Boot);
     game.state.add('Preloader', PRS.Preloader);

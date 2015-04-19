@@ -2,14 +2,14 @@ var engine = function(game) {
     var hero = game.data.hero;
     var ai   = game.data.ai;
 
-    var roundOver = false;
+    var roundOver = true;
     var roundWinner = '';
 
     startRound = function() {
         if (roundOver) {
             game.data.ai_shot   = null;
             game.data.hero_shot = null;
-            this.roundOver = false;
+            roundOver = false;
         }
     };
 
@@ -56,15 +56,14 @@ var engine = function(game) {
 
         roundOver = true;
 
-/*
-        console.log("roundOver: " + roundOver);
-        console.log(hero);
-        console.log(hero.getHealth);
-        console.log(hero.getHealth());
-        console.log("winner: " + this.roundWinner);
+        //console.log("roundOver: " + roundOver);
+        //console.log(hero);
+        //console.log(hero.getHealth);
+        //console.log(hero.getHealth());
+        //console.log("winner: " + this.roundWinner);
         console.log("Hero: " + hero.getHealth());
         console.log("AI: " + ai.getHealth());
-        */
+        
     };
 
     return {
