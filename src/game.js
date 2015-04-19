@@ -10,7 +10,7 @@ PRS.Game.prototype = {
         var background = this.game.add.sprite(0, 0, 'background');
 
         /* create ai */
-        this.data.ai   = new rockman();
+        this.data.ai   = this.game.match.ai;
         this.data.hero = new character();
 
         /* setup input */
@@ -51,10 +51,12 @@ PRS.Game.prototype = {
         tween.onComplete.add(function(){
             this.engine.shoot_user(move);
             // AI just shoots when user does
-            this.engine.shoot_ai(this.data.ai.shoot(this));
+            var m2 = this.data.ai.shoot(this);
+            this.engine.shoot_ai(m2);
 
             this.data.gui.hero_hand_anim(move);
-            this.data.gui.enemy_hand_anim(move);
+            this.data.gui.enemy_hand_anim(m2);
+
             this.finishRound();
 
             this.game.time.events.add(1500,  function() {

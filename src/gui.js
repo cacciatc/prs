@@ -205,15 +205,15 @@ GUI.prototype.generate = function(game, match) {
 	this.tink 		= game.add.audio('tink');
 
 	/* hands */
-	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);
+	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, match.enemy_hand, 0);
 	this.enemy_hand.animations.add('rock', [0]);
 	this.enemy_hand.animations.add('paper', [1]);
-	this.enemy_hand.animations.add('scisssors', [2]);
+	this.enemy_hand.animations.add('scissors', [2]);
 
 	this.hero_hand = game.add.sprite(0, 200, 'slater_hand', 0);
 	this.hero_hand.animations.add('rock', [0]);
 	this.hero_hand.animations.add('paper', [1]);
-	this.hero_hand.animations.add('scisssors', [2]);
+	this.hero_hand.animations.add('scissors', [2]);
 
 	/* health bars */
 	this.hero_health = game.add.graphics(GUI.HERO_HEALTH_X, GUI.HERO_HEALTH_Y);
@@ -249,10 +249,9 @@ GUI.prototype.hurt_enemy = function(game, amt) {
 
 /* called to start the reveal */
 GUI.prototype.reveal = function(game) {
-	//game.add.tween(this.enemy_hand).to( { y: "-100", x:"50" }, 2000, Phaser.Easing.Linear.None, true);
-	//game.add.tween(this.enemy_hand).to( { angle: 45 }, 2000, Phaser.Easing.Linear.None, true);
+	/* end the waiting tweens */
+
 	return this.shake_hands(game);
-	/* TODO: need to get the timing for the final state for the image (paper, rock, scissors) */
 };
 
 /* called when there is a tie */
@@ -280,7 +279,7 @@ GUI.prototype.hero_hand_anim = function(move) {
 		a = "paper";
 	}
 	else if(move == SCISSORS) {
-		a = "scisssors";
+		a = "scissors";
 	}
 	this.hero_hand.play(a);
 };
@@ -294,7 +293,7 @@ GUI.prototype.enemy_hand_anim = function(move) {
 		a = "paper";
 	}
 	else if(move == SCISSORS) {
-		a = "scisssors";
+		a = "scissors";
 	}
 	this.enemy_hand.play(a);
 };

@@ -26,6 +26,7 @@ PRS.Preloader.prototype = {
         /* hands */
         this.load.image('hand', 'assets/gfx/hand.png');
         this.load.spritesheet('slater_hand', 'assets/gfx/hands-slater.png', 376, 152);
+        this.load.spritesheet('sgt_hand', 'assets/gfx/hands-sgt-butterball.png', 376, 152);
 
         /* background */
         this.load.image('background', 'assets/gfx/level-3.png');
