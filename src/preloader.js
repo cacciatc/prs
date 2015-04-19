@@ -26,6 +26,8 @@ PRS.Preloader.prototype = {
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
 
         /* sfx */
+        this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
+        this.load.audio('papa_ow', 'assets/sfx/papaow.mp3');
     },
     create: function() {
         console.log("In preloader");

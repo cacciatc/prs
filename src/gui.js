@@ -16,6 +16,9 @@ function GUI() {
 
 	this.stage				 = null;
 
+	this.hero_ouch			 = null;
+	this.enemy_ouch			 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -120,6 +123,9 @@ GUI.prototype.generate = function(game, match) {
 
 	this.stage = game.add.text(GUI.STAGE_X, GUI.STAGE_Y, match.stage, stage_style);
 
+	this.hero_ouch  = game.add.audio('murray_ow');
+	this.enemy_ouch = game.add.audio(match.enemy_ouch);
+
 	/* shouldn't have to be scaled in the end */
 	this.hero_portrait_box.scale.x = 0.5;
 	this.hero_portrait_box.scale.y = 0.5;
@@ -137,11 +143,15 @@ GUI.prototype.generate = function(game, match) {
 /* called when hero loses a round */
 GUI.prototype.hurt_hero = function(game) {
 	this.hurt_portrait(game, this.hero_portrait);
+	if(this.hero_ouch != null && !this.hero_ouch.isPlaying)
+		this.hero_ouch.play();
 };
 
 /* called when hero loses a round */
 GUI.prototype.hurt_enemy = function(game) {
 	this.hurt_portrait(game, this.enemy_portrait);
+	if(this.enemy_ouch != null && !this.enemy_ouch.isPlaying)
+		this.enemy_ouch.play();
 };
 
 /* probably only needed for touch/mouse clicks */
