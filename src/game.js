@@ -41,7 +41,7 @@ PRS.Game.prototype = {
 
         var roundJustRan = false;
 
-        if (!this.engine.isRoundOver()) {
+        if (this.engine.hasRoundStarted()) {
             // AI just shoots when user does
             if (this.data.r_key.justDown) {
                 console.debug("R");
@@ -61,7 +61,7 @@ PRS.Game.prototype = {
             roundJustRan = true;
         }
 
-        if (roundJustRan && this.engine.isRoundOver()) {
+        if (roundJustRan && !this.engine.hasRoundStarted()) {
             console.log("roundWinner" + this.engine.roundWinner);
             
             if (this.engine.roundWinner == 'HERO') {
@@ -79,7 +79,7 @@ PRS.Game.prototype = {
             } else if (this.data.hero.getHealth() < 0) {
                 console.log('you lose');
                 (new MatchOverGUI()).generate(this.game);
-                
+
             } else {
                 this.engine = new engine(this);
                 this.engine.startRound();
