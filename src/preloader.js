@@ -32,17 +32,17 @@ PRS.Preloader.prototype = {
         /* gui */
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
         //this.load.spritesheet('next_button', 'assets/gfx/next_buttons.png', 64, 64);
+        this.load.spritesheet('stage-markers', 'assets/gfx/stage-markers.png', 70, 61);
+        this.load.spritesheet('button-pause', 'assets/gfx/button-pause.png', 35, 35);
 
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
         this.load.audio('papa_ow', 'assets/sfx/papaow.mp3');
-        this.load.audio('sgt_ow', 'assets/sfx/sgtbutterballow.mp3');
+        this.load.audio('sgt_ow', 'assets/sfx/butterballow3.mp3');
         this.load.audio('epee_ow', 'assets/sfx/epeeow.mp3');
         this.load.audio('arch_ow', 'assets/sfx/archibaldow.mp3');
+        this.load.audio('slater_ow', 'assets/sfx/slaterow.mp3');
         // hero ouch
-        
-
-        this.load.audio('tink', 'assets/sfx/tink.mp3');
     },
     create: function() {
         console.log("In preloader");

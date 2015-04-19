@@ -35,6 +35,8 @@ PRS.Game.prototype = {
         this.data.nobodyIsShooting = true;
         
         this.data.resultSet = [];
+
+        this.game.is_paused = false;
     },
     initLevels: function() {},
     showLevel: function(level) {},
@@ -85,6 +87,16 @@ PRS.Game.prototype = {
     update: function() {
         // Read the justDown getter here so it gets 
         // reset on every loop rather than stack up.
+        if(this.game.is_paused) {
+            this.game.input.keyboard.enabled = false;
+            this.game.world.alpha = 0.7;
+            return;
+        }
+        else {
+            this.game.input.keyboard.enabled = true;
+            this.game.world.alpha = 1.0;
+        }
+
         var rPress = this.data.r_key.justDown;
         var pPress = this.data.p_key.justDown;
         var sPress = this.data.s_key.justDown;

@@ -25,6 +25,8 @@ function GUI() {
 
 	this.tink				 = null;
 
+	this.pause				 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -177,8 +179,8 @@ GUI.HERO_NAME 	= "SLATER";
 GUI.ENEMY_NAME_X = 600 - 105;
 GUI.ENEMY_NAME_Y = 63;
 
-GUI.STAGE_X 	 = 390;
-GUI.STAGE_Y		 = 5;
+GUI.STAGE_X 	 = 363;
+GUI.STAGE_Y		 = 0;
 
 GUI.ENEMY_HAND_X = 420;
 GUI.ENEMY_HAND_Y = 200;
@@ -188,6 +190,9 @@ GUI.HERO_HEALTH_Y = 33;
 
 GUI.ENEMY_HEALTH_X = 451;
 GUI.ENEMY_HEALTH_Y = 33;
+
+GUI.PAUSE_X = 15;
+GUI.PAUSE_Y = 450;
 
 /* given a game object add gui elements */
 GUI.prototype.generate = function(game, match) {
@@ -219,11 +224,9 @@ GUI.prototype.generate = function(game, match) {
 	this.enemy_name.x = tmpx;
 
 	/* add stage text */
-	var stage_style = { font: "55px Amatic SC", fill: "#ffffff", align: "center" };
+	this.stage = game.add.sprite(GUI.STAGE_X, GUI.STAGE_Y, 'stage-markers', match.stage - 1);
 
-	this.stage = game.add.text(GUI.STAGE_X, GUI.STAGE_Y, match.stage, stage_style);
-
-	this.hero_ouch  = game.add.audio('murray_ow');
+	this.hero_ouch  = game.add.audio('slater_ow');
 	this.enemy_ouch = game.add.audio(match.enemy_ouch);
 
 	this.tink 		= game.add.audio('tink');
@@ -242,6 +245,10 @@ GUI.prototype.generate = function(game, match) {
 	this.enemy_health = game.add.graphics(GUI.ENEMY_HEALTH_X, GUI.ENEMY_HEALTH_Y);
 	this.enemy_health.beginFill(0x38b449);
 	this.enemy_health.drawRect(0, 0, 177, 21);
+
+	this.pause = game.add.button(GUI.PAUSE_X, GUI.PAUSE_Y, 'button-pause', function() {
+		game.is_paused = !game.is_paused;
+	}, this, 1, 0, 2);
 };
 
 /* called when hero loses a round */
