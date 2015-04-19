@@ -52,3 +52,19 @@ var paperman = function(){
   };
   return c;
 };
+
+var archibald = function(){
+  var c = character();
+  c.nextShoot = function(gs) {
+    return [ROCK, PAPER][Math.floor(Math.random() * 2)];
+  };
+  return c;
+};
+
+var marv = function(){
+  var c = character();
+  c.nextShoot = function(gs) {
+    return [ROCK, PAPER, SCISSORS][Math.floor(Math.random() * 3)];
+  };
+  return c;
+};
