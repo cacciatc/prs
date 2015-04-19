@@ -76,7 +76,7 @@ PRS.Game.prototype = {
             if (this.data.ai.getHealth() < 0) {
                 console.log('you win');
             } else if (this.data.hero.getHealth() < 0) {
-                console.log('you win');
+                console.log('you lose');
             } else {
                 this.engine = new engine(this);
                 this.engine.startRound();
