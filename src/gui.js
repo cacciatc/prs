@@ -77,7 +77,7 @@ function GUI() {
 	    	game.time.events.add(300,  function(){ tink.play(); });
 	    	game.time.events.add(1000, function(){ tink.play(); });
 	    	// TODO: this should be the "shoot" sound I think
-	    	game.time.events.add(1600, function(){ tink.play(); });
+	    	//game.time.events.add(1600, function(){ tink.play(); });
 		};
 
 		var shake2 = function(tween){
@@ -185,13 +185,6 @@ GUI.prototype.generate = function(game, match) {
 
 	this.enemy_portrait = game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
 
-	/* setup mask */
-	this.enemy_portrait_mask = game.add.graphics(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y);
-    this.enemy_portrait_mask.beginFill(0xffffff);
-    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
-
-    this.enemy_portrait.mask = this.enemy_portrait_mask;
-
 	this.enemy_portrait.animations.add('normal',[0]);
 	this.enemy_portrait.animations.add('hurt',  [1]);
 
@@ -221,9 +214,6 @@ GUI.prototype.generate = function(game, match) {
 	this.hero_hand.animations.add('rock', [0]);
 	this.hero_hand.animations.add('paper', [1]);
 	this.hero_hand.animations.add('scisssors', [2]);
-
-	this.enemy_portrait_mask.beginFill(0xffffff);
-    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
 
 	/* health bars */
 	this.hero_health = game.add.graphics(GUI.HERO_HEALTH_X, GUI.HERO_HEALTH_Y);
