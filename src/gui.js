@@ -25,6 +25,8 @@ function GUI() {
 	this.hero_health		 = null;
 	this.enemy_health		 = null;
 
+	this.tink				 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -51,10 +53,22 @@ function GUI() {
 		this._shake_enemy_tween  = game.add.tween(this.enemy_hand);
 		this._shake_hero_tween  = game.add.tween(this.hero_hand);
 
+		var tink = game.add.audio('tink');
+		var hero_hand = this.hero_hand;
+
+	    var t1;
 		var shake1 = function(tween){
 			var r1 = Math.random()*50;
 			var r2 = Math.random()*50;
 			var r3 = Math.random()*50;
+			/*tween
+	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);*/
+	    	
 			tween
 	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
@@ -62,7 +76,32 @@ function GUI() {
 	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
 	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
-			return tween;
+
+	    	/*var t2;
+
+	    	tween
+		    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In)
+		    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
+
+	    	t2 = game.add.tween(hero_hand);    	
+	    	t2
+		    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
+		    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In);
+	    	t2.onComplete.add(function() {
+	    		tink.play();
+	    		tween.start();
+	    	}, this); 
+
+	    	t1 = game.add.tween(hero_hand);    	
+	    	t1
+	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In);
+	    	t1.onComplete.add(function() {
+	    		tink.play();
+	    		t2.start();
+	    	}, this);
+
+			return tween;*/
 		};
 
 		var shake2 = function(tween){
@@ -79,10 +118,11 @@ function GUI() {
 			return tween;
 		};
 
-    	shake1(this._shake_enemy_tween);
-    	shake2(this._shake_hero_tween);
+    	shake2(this._shake_enemy_tween);
+    	shake1(this._shake_hero_tween);
 
     	this._shake_enemy_tween.start();
+    	//t1.start();
     	this._shake_hero_tween.start();
     	return this._shake_enemy_tween;
 	};
@@ -200,6 +240,8 @@ GUI.prototype.generate = function(game, match) {
 
 	this.hero_ouch  = game.add.audio('murray_ow');
 	this.enemy_ouch = game.add.audio(match.enemy_ouch);
+
+	this.tink 		= game.add.audio('tink');
 
 	/* hands */
 	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);

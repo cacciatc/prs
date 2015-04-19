@@ -35,6 +35,7 @@ PRS.Preloader.prototype = {
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
         this.load.audio('papa_ow', 'assets/sfx/papaow.mp3');
+        this.load.audio('tink', 'assets/sfx/tink.mp3');
     },
     create: function() {
         console.log("In preloader");
