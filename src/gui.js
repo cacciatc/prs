@@ -20,6 +20,7 @@ function GUI() {
 	this.enemy_ouch			 = null;
 
 	this.enemy_hand			 = null;
+	this.hero_hand			 = null;
 
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
@@ -45,16 +46,24 @@ function GUI() {
 	this._shake_enemy_tween = null;
 	this.shake_hands = function(game) {
 		this._shake_enemy_tween  = game.add.tween(this.enemy_hand);
+		this._shake_hero_tween  = game.add.tween(this.hero_hand);
 
-    	this._shake_enemy_tween
+		var shake = function(tween){
+			tween
 	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
 	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
 	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In);
+			return tween;
+		}
+
+    	shake(this._shake_enemy_tween);
+    	shake(this._shake_hero_tween);
 
     	this._shake_enemy_tween.start();
+    	this._shake_hero_tween.start();
     	return this._shake_enemy_tween;
 	};
 
@@ -149,6 +158,8 @@ GUI.prototype.generate = function(game, match) {
 
 	/* hands */
 	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);
+	this.hero_hand = game.add.sprite(400, 350, 'hand', 0);
+	this.hero_hand.angle = 180
 
 	/* shouldn't have to be scaled in the end */
 	this.hero_portrait_box.scale.x = 0.35;
