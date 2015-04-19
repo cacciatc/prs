@@ -61,47 +61,23 @@ function GUI() {
 			var r1 = Math.random()*50;
 			var r2 = Math.random()*50;
 			var r3 = Math.random()*50;
-			/*tween
-	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500)
-	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
-	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);*/
 
 			tween
 	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
 	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500) // 300 = 100 * 3
 	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
-	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
+	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500) // 1000 = 100 * 5 + 500
+	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In); // 1600 = 100 * 6 + 500 * 2
 
-	    	/*var t2;
-
-	    	tween
-		    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In)
-		    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
-
-	    	t2 = game.add.tween(hero_hand);    	
-	    	t2
-		    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
-		    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In);
-	    	t2.onComplete.add(function() {
-	    		tink.play();
-	    		tween.start();
-	    	}, this); 
-
-	    	t1 = game.add.tween(hero_hand);    	
-	    	t1
-	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In);
-	    	t1.onComplete.add(function() {
-	    		tink.play();
-	    		t2.start();
-	    	}, this);
-
-			return tween;*/
+			return tween;
+		};
+		var shake1Sound = function(){
+			/* Just play the sound. Timing has to match shake1(); */ 
+	    	game.time.events.add(300,  function(){ tink.play(); });
+	    	game.time.events.add(1000, function(){ tink.play(); });
+	    	// TODO: this should be the "shoot" sound I think
+	    	game.time.events.add(1600, function(){ tink.play(); });
 		};
 
 		var shake2 = function(tween){
@@ -118,12 +94,10 @@ function GUI() {
 			return tween;
 		};
 
-    	shake2(this._shake_enemy_tween);
-    	shake1(this._shake_hero_tween);
+		shake1Sound();
+    	shake2(this._shake_enemy_tween).start();
+    	shake1(this._shake_hero_tween).start();
 
-    	this._shake_enemy_tween.start();
-    	//t1.start();
-    	this._shake_hero_tween.start();
     	return this._shake_enemy_tween;
 	};
 
@@ -211,6 +185,13 @@ GUI.prototype.generate = function(game, match) {
 
 	this.enemy_portrait 	= game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
 
+	/* setup mask */
+	this.enemy_portrait_mask = game.add.graphics(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y);
+    this.enemy_portrait_mask.beginFill(0xffffff);
+    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
+
+    this.enemy_portrait.mask = this.enemy_portrait_mask;
+
 	this.enemy_portrait.animations.add('normal',[0]);
 	this.enemy_portrait.animations.add('hurt',  [1]);
 
@@ -223,7 +204,6 @@ GUI.prototype.generate = function(game, match) {
 	var tmpx = GUI.ENEMY_AVATAR_X - this.enemy_name.width - 20;
 	this.enemy_name.x = tmpx;
 
-	/* add stage text */
 	this.stage = game.add.sprite(GUI.STAGE_X, GUI.STAGE_Y, 'stage-markers', match.stage - 1);
 
 	this.hero_ouch  = game.add.audio('slater_ow');
@@ -236,6 +216,9 @@ GUI.prototype.generate = function(game, match) {
 
 	this.hero_hand = game.add.sprite(400, 350, 'hand', 0);
 	this.hero_hand.angle = 180
+
+	this.enemy_portrait_mask.beginFill(0xffffff);
+    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
 
 	/* health bars */
 	this.hero_health = game.add.graphics(GUI.HERO_HEALTH_X, GUI.HERO_HEALTH_Y);
