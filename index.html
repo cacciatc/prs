@@ -11,6 +11,7 @@
     <script src="src/boot.js"></script>
     <script src="src/preloader.js"></script>
     <script src="src/mainmenu.js"></script>
+    <script src="src/intro_state.js"></script>
     <script src="src/game.js"></script>
     <script src="src/ai.js"></script>
     <script src="src/gui.js"></script>
@@ -83,6 +84,7 @@
     game.state.add('Preloader', PRS.Preloader);
     game.state.add('MainMenu', PRS.MainMenu);
     game.state.add('Game', PRS.Game);
+    game.state.add('Intro', PRS.Intro)
     game.state.start('Boot');
 })();
 </script>

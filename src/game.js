@@ -11,7 +11,17 @@ PRS.Game.prototype = {
         this.data.music.volume = 0.7;
         this.data.music.play();
 
+        this.data.everything = this.game.add.group();
+
         var background = this.game.add.sprite(0, 0, 'background');
+
+        this.data.everything.add(background);
+        this.data.everything.alpha = 0.0;
+
+        var t = this.game.add.tween(this.data.everything);
+
+        t.to({alpha:1.0}, 1000, Phaser.Easing.Quartic.Out);
+        t.start();
 
         /* create ai */
         this.data.ai   = this.game.match.ai;
@@ -34,13 +44,14 @@ PRS.Game.prototype = {
 
         /* create the GUI */
         this.data.gui = new GUI();
-        this.data.gui.generate(this.game, this.game.match);
+        this.data.gui.generate(this.game, this.game.match, this.data);
         
         this.data.nobodyIsShooting = true;
         
         this.data.resultSet = [];
 
         this.game.is_paused = false;
+        this.game.is_done = false;
     },
     initLevels: function() {},
     showLevel: function(level) {},
@@ -90,10 +101,12 @@ PRS.Game.prototype = {
             if (this.data.ai.getHealth() < 0) {
                 console.log('you win');
                 (new MatchOverGUI()).generate(this.game);
+                this.game.is_done = true;
 
             } else if (this.data.hero.getHealth() < 0) {
                 console.log('you lose');
                 (new MatchOverGUI()).generate(this.game);
+                this.game.is_done= true;
 
             } else {
                 //this.data.nobodyIsShooting = true;
@@ -106,6 +119,9 @@ PRS.Game.prototype = {
     update: function() {
         // Read the justDown getter here so it gets 
         // reset on every loop rather than stack up.
+        if(this.game.is_done)
+            return;
+
         if(this.game.is_paused) {
             this.game.input.keyboard.enabled = false;
             this.game.world.alpha = 0.7;

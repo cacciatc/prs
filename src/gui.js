@@ -178,7 +178,7 @@ GUI.PAUSE_X = 15;
 GUI.PAUSE_Y = 450;
 
 /* given a game object add gui elements */
-GUI.prototype.generate = function(game, match) {
+GUI.prototype.generate = function(game, match, data) {
 	/* add button sprites */
 	/*
 	this.rock_sprite_btn 	 = game.add.sprite(GUI.ROCK_BTN_X, GUI.ROCK_BTN_Y, 'input_buttons', 0);
@@ -187,15 +187,23 @@ GUI.prototype.generate = function(game, match) {
 	*/
 
 	/* add portraits */
-	this.hero_portrait = game.add.sprite(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y, 'hero_portrait', 0);
+	this.hero_portrait = game.add.sprite(GUI.HERO_AVATAR_X, -500, 'hero_portrait', 0);
 
 	this.hero_portrait.animations.add('normal',[0]);
 	this.hero_portrait.animations.add('hurt',  [1]);
 
-	this.enemy_portrait = game.add.sprite(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y, match.enemy_portrait, 0);
+	this.enemy_portrait = game.add.sprite(GUI.ENEMY_AVATAR_X, -500, match.enemy_portrait, 0);
 
 	this.enemy_portrait.animations.add('normal',[0]);
 	this.enemy_portrait.animations.add('hurt',  [1]);
+
+	var t2 = game.add.tween(this.hero_portrait);
+	t2.to({y:GUI.HERO_AVATAR_Y}, 2000, Phaser.Easing.Quartic.Out);
+    t2.start();
+
+    var t3 = game.add.tween(this.enemy_portrait);
+	t3.to({y:GUI.ENEMY_AVATAR_Y}, 2000, Phaser.Easing.Quartic.Out);
+    t3.start();
 
 	/* add combatant names */
 	var name_style = { font: "34px Amatic SC", fill: "#ffffff", align: "center" };
@@ -236,6 +244,11 @@ GUI.prototype.generate = function(game, match) {
 	this.pause = game.add.button(GUI.PAUSE_X, GUI.PAUSE_Y, 'button-pause', function() {
 		game.is_paused = !game.is_paused;
 	}, this, 1, 0, 2);
+
+	data.everything.add(this.enemy_hand);
+	data.everything.add(this.hero_hand);
+	data.everything.add(this.hero_health);
+	data.everything.add(this.enemy_health);
 };
 
 /* called when hero loses a round */

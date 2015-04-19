@@ -8,7 +8,7 @@ PRS.MainMenu.prototype = {
         this.startButton.anchor.set(0.5,0);
         this.startButton.input.useHandCursor = true;*/
         console.log("In main menu");
-        this.game.state.start('Game');
+        this.game.state.start('Intro');
     },
     startGame: function() {
         //this.game.state.start('Game');
