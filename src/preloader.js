@@ -17,12 +17,16 @@ PRS.Preloader.prototype = {
         this.load.spritesheet('hero_portrait', 'assets/gfx/avatar-slater.png', 128, 175);
 
         /* hands */
-        this.load.image('hand', 'assets/gfx/hand.png');
         this.load.spritesheet('slater_hand', 'assets/gfx/hands-slater.png', 376, 152);
         this.load.spritesheet('sgt_hand', 'assets/gfx/hands-sgt-butterball.png', 376, 152);
+        this.load.spritesheet('papa_hand', 'assets/gfx/hands-papa.png', 376, 152);
+        this.load.spritesheet('epee_hand', 'assets/gfx/hands-mistress-epee.png', 376, 152);
+        this.load.spritesheet('marv_hand', 'assets/gfx/hands-marv.png', 376, 152);
+        this.load.spritesheet('arch_hand', 'assets/gfx/hands-archibald.png', 376, 152);
 
         /* background */
-        this.load.image('background', 'assets/gfx/level-3.png');
+        this.load.image('background', 'assets/gfx/stage-fight.png');
+        this.load.image('background-intro', 'assets/gfx/stage-intro.png');
 
         /* gui */
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
@@ -42,6 +46,7 @@ PRS.Preloader.prototype = {
 
         this.load.audio('music', 'assets/sfx/song.mp3');
         this.load.audio('yay', 'assets/sfx/yay.mp3');
+        this.load.audio('boo', 'assets/sfx/boo.mp3');
     },
     create: function() {
         console.log("In preloader");

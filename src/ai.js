@@ -32,7 +32,7 @@ var character = function() {
 var rockman = function(){
   var c = character();
   c.nextShoot = function(gs) {
-    return [ROCK, PAPER, SCISSORS, ROCK, ROCK][Math.floor(Math.random() * 5)];
+    return [ROCK, PAPER, SCISSORS, ROCK, ROCK, ROCK][Math.floor(Math.random() * 6)];
   };
   return c;
 };
@@ -40,7 +40,7 @@ var rockman = function(){
 var scissorman = function(){
   var c = character();
   c.nextShoot = function(gs) {
-    return [ROCK, PAPER, SCISSORS, SCISSORS, SCISSORS][Math.floor(Math.random() * 5)];
+    return [ROCK, PAPER, SCISSORS, SCISSORS, SCISSORS, SCISSORS][Math.floor(Math.random() * 6)];
   };
   return c;
 };
@@ -48,7 +48,7 @@ var scissorman = function(){
 var paperman = function(){
   var c = character();
   c.nextShoot = function(gs) {
-    return [ROCK, PAPER, SCISSORS, PAPER, PAPER][Math.floor(Math.random() * 5)];
+    return [ROCK, PAPER, SCISSORS, PAPER, PAPER, PAPER][Math.floor(Math.random() * 6)];
   };
   return c;
 };

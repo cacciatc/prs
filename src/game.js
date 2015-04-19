@@ -99,14 +99,42 @@ PRS.Game.prototype = {
             }
 
             if (this.data.ai.getHealth() < 0) {
-                console.log('you win');
+                var mt1 = this.game.add.tween(this.data.music);
+
+                mt1.to({volume:0.0}, 700);
+                mt1.onComplete.add(function() {
+                    this.data.music.stop();
+                }, this);
+                mt1.start();
+
+                var yay = this.game.add.audio('yay');
+                var mt2 = this.game.add.tween(yay);
+                yay.volume = 0.0;
+                yay.play();
+                mt2.to({volume:1.0}, 300, Phaser.Easing.Linear.Out, false, 500);
+                mt2.start();
+
                 (new MatchOverGUI()).generate(this.game);
                 this.game.is_done = true;
 
             } else if (this.data.hero.getHealth() < 0) {
-                console.log('you lose');
+                var mt1 = this.game.add.tween(this.data.music);
+
+                mt1.to({volume:0.0}, 700);
+                mt1.onComplete.add(function() {
+                    this.data.music.stop();
+                }, this);
+                mt1.start();
+
+                var yay = this.game.add.audio('boo');
+                var mt2 = this.game.add.tween(yay);
+                yay.volume = 0.0;
+                yay.play();
+                mt2.to({volume:1.0}, 300, Phaser.Easing.Linear.Out, false, 500);
+                mt2.start();
+
                 (new MatchOverGUI()).generate(this.game);
-                this.game.is_done= true;
+                this.game.is_done = true;
 
             } else {
                 //this.data.nobodyIsShooting = true;

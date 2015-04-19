@@ -166,11 +166,11 @@ GUI.STAGE_Y		 = 0;
 GUI.ENEMY_HAND_X = 420;
 GUI.ENEMY_HAND_Y = 200;
 
-GUI.HERO_HEALTH_X = 163;
-GUI.HERO_HEALTH_Y = 33;
+GUI.HERO_HEALTH_X = 161;
+GUI.HERO_HEALTH_Y = 34;
 
-GUI.ENEMY_HEALTH_X = 451;
-GUI.ENEMY_HEALTH_Y = 33;
+GUI.ENEMY_HEALTH_X = 461;
+GUI.ENEMY_HEALTH_Y = 34;
 
 GUI.PAUSE_X = 15;
 GUI.PAUSE_Y = 450;
@@ -233,11 +233,11 @@ GUI.prototype.generate = function(game, match, data) {
 	/* health bars */
 	this.hero_health = game.add.graphics(GUI.HERO_HEALTH_X, GUI.HERO_HEALTH_Y);
 	this.hero_health.beginFill(0x38b449);
-	this.hero_health.drawRect(0, 0, 177, 21);
+	this.hero_health.drawRect(0, 0, 176, 21);
 
 	this.enemy_health = game.add.graphics(GUI.ENEMY_HEALTH_X, GUI.ENEMY_HEALTH_Y);
 	this.enemy_health.beginFill(0x38b449);
-	this.enemy_health.drawRect(0, 0, 177, 21);
+	this.enemy_health.drawRect(0, 0, 176, 21);
 
 	this.pause = game.add.button(GUI.PAUSE_X, GUI.PAUSE_Y, 'button-pause', function() {
 		game.is_paused = !game.is_paused;

@@ -3,7 +3,7 @@ PRS.Intro.prototype = {
     create: function() {
         console.log("In intro");
 
-        var background = this.game.add.sprite(0, 0, 'background');
+        var background = this.game.add.sprite(0, 0, 'background-intro');
 
         var grp = this.game.add.group();
 
