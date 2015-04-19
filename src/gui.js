@@ -51,19 +51,36 @@ function GUI() {
 		this._shake_enemy_tween  = game.add.tween(this.enemy_hand);
 		this._shake_hero_tween  = game.add.tween(this.hero_hand);
 
-		var shake = function(tween){
+		var shake1 = function(tween){
+			var r1 = Math.random()*50;
+			var r2 = Math.random()*50;
+			var r3 = Math.random()*50;
 			tween
-	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
-	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
-	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
-	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In);
+	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
 			return tween;
-		}
+		};
 
-    	shake(this._shake_enemy_tween);
-    	shake(this._shake_hero_tween);
+		var shake2 = function(tween){
+			var r1 = Math.random()*50;
+			var r2 = Math.random()*50;
+			var r3 = Math.random()*50;
+			tween
+	    	.to({y:"-" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"+" + (30 + r1)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r2)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r2)}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-" + (30 + r3)}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+" + (30 + r3)}, 100, Phaser.Easing.Circular.In);
+			return tween;
+		};
+
+    	shake1(this._shake_enemy_tween);
+    	shake2(this._shake_hero_tween);
 
     	this._shake_enemy_tween.start();
     	this._shake_hero_tween.start();
