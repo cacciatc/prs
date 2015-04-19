@@ -83,7 +83,7 @@ function GUI() {
 		var shake1Sound = function(){
 			/* Just play the sound. Timing has to match shake1(); */ 
 	    	game.time.events.add(210,  function(){ tink2.play(); });
-	    	game.time.events.add(600, function(){ tink2.play(); });
+	    	game.time.events.add(600, function(){ tink1.play(); });
 	    	//game.time.events.add(920, function(){ tink1.play(); });
 		};
 
