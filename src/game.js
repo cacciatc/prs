@@ -69,8 +69,7 @@ PRS.Game.prototype = {
             } else if (this.engine.roundWinner == 'AI') {
                 this.data.gui.hurt_hero(this.game);
             } else {
-                // stub
-                // this.data.gui.tie(this.game);
+                this.data.gui.tie(this.game);
             }
 
             if (this.data.ai.getHealth() < 0) {

@@ -154,6 +154,17 @@ GUI.prototype.hurt_enemy = function(game) {
 		this.enemy_ouch.play();
 };
 
+/* called when there is a tie */
+GUI.prototype.tie = function(game) {
+	this.hero_portrait.play('hurt', 1, false);
+	this.enemy_portrait.play('hurt', 1, false);
+
+   game.time.events.add(2000,  function() {
+    	this.hero_portrait.play('normal', 1, false);
+		this.enemy_portrait.play('normal', 1, false);
+    }, this);
+};
+
 /* probably only needed for touch/mouse clicks */
 GUI.prototype.update = function() {
 
