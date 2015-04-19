@@ -16,11 +16,12 @@ PRS.Preloader.prototype = {
         /* gfx */
 
         /* portraits */
-        this.load.spritesheet('hero_portrait', 'assets/gfx/avatar.png', 381, 438);
-        this.load.image('hero_portrait_box', 'assets/gfx/avatar-box.png');
-
-        this.load.spritesheet('enemy_portrait', 'assets/gfx/avatar-sprite.png', 381, 438);
-        this.load.image('enemy_portrait_box', 'assets/gfx/avatar-box.png');
+        this.load.spritesheet('epee_portrait', 'assets/gfx/avatar-mistress-epee.png', 128, 175);
+        this.load.spritesheet('sgt_portrait', 'assets/gfx/avatar-sgt-butterball.png', 128, 175);
+        this.load.spritesheet('arch_portrait', 'assets/gfx/avatar-archibald.png', 128, 175);
+        this.load.spritesheet('marv_portrait', 'assets/gfx/avatar-marv.png', 128, 175);
+        this.load.spritesheet('papa_portrait', 'assets/gfx/avatar-papa.png', 128, 175);
+        this.load.spritesheet('hero_portrait', 'assets/gfx/avatar-slater.png', 128, 175);
 
         /* hands */
         this.load.image('hand', 'assets/gfx/hand.png');
@@ -35,6 +36,12 @@ PRS.Preloader.prototype = {
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
         this.load.audio('papa_ow', 'assets/sfx/papaow.mp3');
+        this.load.audio('sgt_ow', 'assets/sfx/sgtbutterballow.mp3');
+        this.load.audio('epee_ow', 'assets/sfx/epeeow.mp3');
+        this.load.audio('arch_ow', 'assets/sfx/archibaldow.mp3');
+        // hero ouch
+        
+
         this.load.audio('tink', 'assets/sfx/tink.mp3');
     },
     create: function() {
