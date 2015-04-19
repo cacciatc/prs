@@ -7,6 +7,8 @@ PRS.Game.prototype = {
     create: function() {
         console.log("In game state");
 
+        var background = this.game.add.sprite(0, 0, 'background');
+
         /* create ai */
         this.data.ai   = new rockman();
         this.data.hero = new character();
@@ -55,6 +57,7 @@ PRS.Game.prototype = {
             }
             else if (this.data.s_key.justDown) {
                 console.debug("S");
+                this.data.gui.reveal(this.game);
                 this.engine.shoot_user(SCISSORS);
                 this.engine.shoot_ai(this.data.ai.shoot(this));
             }

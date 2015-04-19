@@ -19,6 +19,8 @@ function GUI() {
 	this.hero_ouch			 = null;
 	this.enemy_ouch			 = null;
 
+	this.enemy_hand			 = null;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -38,6 +40,21 @@ function GUI() {
     		}, this);
 
     	this._shake_tween.start();
+	};
+
+	this._shake_enemy_tween = null;
+	this.shake_hands = function(game) {
+		this._shake_enemy_tween  = game.add.tween(this.enemy_hand);
+
+    	this._shake_enemy_tween
+	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In)
+	    	.to({y:"-30"}, 100, Phaser.Easing.Circular.In, false, 500)
+	    	.to({y:"+30"}, 100, Phaser.Easing.Circular.In);
+
+    	this._shake_enemy_tween.start();
 	};
 
 	this.hurt_portrait = function(game, portrait) {
@@ -60,21 +77,24 @@ GUI.SCISSORS_BTN_Y 	= 450;
 
 /* portrait positions */
 GUI.HERO_AVATAR_X = 20;
-GUI.HERO_AVATAR_Y = 10;
+GUI.HERO_AVATAR_Y = 5;
 
-GUI.ENEMY_AVATAR_X = 600;
-GUI.ENEMY_AVATAR_Y = 10;
+GUI.ENEMY_AVATAR_X = 640;
+GUI.ENEMY_AVATAR_Y = 5;
 
 /* combatant names */
-GUI.HERO_NAME_X = 20 + 200;
-GUI.HERO_NAME_Y = 30;
+GUI.HERO_NAME_X = 160;
+GUI.HERO_NAME_Y = 63;
 GUI.HERO_NAME 	= "MURRAY";
 
-GUI.ENEMY_NAME_X = 600 - 90;
-GUI.ENEMY_NAME_Y = 30;
+GUI.ENEMY_NAME_X = 600 - 60;
+GUI.ENEMY_NAME_Y = 63;
 
-GUI.STAGE_X 	 = 400;
+GUI.STAGE_X 	 = 390;
 GUI.STAGE_Y		 = 5;
+
+GUI.ENEMY_HAND_X = 420;
+GUI.ENEMY_HAND_Y = 200;
 
 /* given a game object add gui elements */
 GUI.prototype.generate = function(game, match) {
@@ -92,7 +112,7 @@ GUI.prototype.generate = function(game, match) {
 	/* setup mask */
 	this.hero_portrait_mask = game.add.graphics(GUI.HERO_AVATAR_X, GUI.HERO_AVATAR_Y);
     this.hero_portrait_mask.beginFill(0xffffff);
-    this.hero_portrait_mask.drawRect(15, 15, 160, 300);
+    this.hero_portrait_mask.drawRect(5, 5, 160, 300);
 
     this.hero_portrait.mask = this.hero_portrait_mask; 
 
@@ -105,7 +125,7 @@ GUI.prototype.generate = function(game, match) {
 	/* setup mask */
 	this.enemy_portrait_mask = game.add.graphics(GUI.ENEMY_AVATAR_X, GUI.ENEMY_AVATAR_Y);
     this.enemy_portrait_mask.beginFill(0xffffff);
-    this.enemy_portrait_mask.drawRect(15, 15, 160, 300);
+    this.enemy_portrait_mask.drawRect(5, 5, 160, 300);
 
     this.enemy_portrait.mask = this.enemy_portrait_mask;
 
@@ -126,18 +146,21 @@ GUI.prototype.generate = function(game, match) {
 	this.hero_ouch  = game.add.audio('murray_ow');
 	this.enemy_ouch = game.add.audio(match.enemy_ouch);
 
+	/* hands */
+	this.enemy_hand = game.add.sprite(GUI.ENEMY_HAND_X, GUI.ENEMY_HAND_Y, 'hand', 0);
+
 	/* shouldn't have to be scaled in the end */
-	this.hero_portrait_box.scale.x = 0.5;
-	this.hero_portrait_box.scale.y = 0.5;
+	this.hero_portrait_box.scale.x = 0.35;
+	this.hero_portrait_box.scale.y = 0.35;
 
-	this.hero_portrait.scale.x = 0.5;
-	this.hero_portrait.scale.y = 0.5;
+	this.hero_portrait.scale.x = 0.35;
+	this.hero_portrait.scale.y = 0.35;
 
-	this.enemy_portrait_box.scale.x = 0.5;
-	this.enemy_portrait_box.scale.y = 0.5;
+	this.enemy_portrait_box.scale.x = 0.35;
+	this.enemy_portrait_box.scale.y = 0.35;
 
-	this.enemy_portrait.scale.x = 0.5;
-	this.enemy_portrait.scale.y = 0.5;
+	this.enemy_portrait.scale.x = 0.35;
+	this.enemy_portrait.scale.y = 0.35;
 };
 
 /* called when hero loses a round */
@@ -152,6 +175,13 @@ GUI.prototype.hurt_enemy = function(game) {
 	this.hurt_portrait(game, this.enemy_portrait);
 	if(this.enemy_ouch != null && !this.enemy_ouch.isPlaying)
 		this.enemy_ouch.play();
+};
+
+/* called to start the reveal */
+GUI.prototype.reveal = function(game) {
+	//game.add.tween(this.enemy_hand).to( { y: "-100", x:"50" }, 2000, Phaser.Easing.Linear.None, true);
+	//game.add.tween(this.enemy_hand).to( { angle: 45 }, 2000, Phaser.Easing.Linear.None, true);
+	this.shake_hands(game);
 };
 
 /* called when there is a tie */

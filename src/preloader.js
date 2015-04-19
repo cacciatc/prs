@@ -22,9 +22,15 @@ PRS.Preloader.prototype = {
         this.load.spritesheet('enemy_portrait', 'assets/gfx/avatar-sprite.png', 381, 438);
         this.load.image('enemy_portrait_box', 'assets/gfx/avatar-box.png');
 
+        /* hands */
+        this.load.image('hand', 'assets/gfx/hand.png');
+
+        /* background */
+        this.load.image('background', 'assets/gfx/level.png');
+
         /* gui */
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
-        //this.load.spritesheet('nxet_button', 'assets/gfx/next_buttons.png', 64, 64);
+        //this.load.spritesheet('next_button', 'assets/gfx/next_buttons.png', 64, 64);
 
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
