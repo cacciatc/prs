@@ -90,7 +90,6 @@ PRS.Game.prototype = {
 
     finishRound: function(){
         if (this.engine.hasRoundEnded()) {
-            console.log("roundWinner" + this.engine.roundWinner);
             
             if (this.engine.roundWinner == 'HERO') {
                 this.data.gui.hurt_enemy(this.game, this.data.ai.getHealth());

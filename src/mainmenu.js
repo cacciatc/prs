@@ -1,16 +1,19 @@
-PRS.MainMenu = function(game) {};
+PRS.MainMenu = function(game) {
+	this.game = game;
+};
 PRS.MainMenu.prototype = {
     create: function() {
-        /*this.add.sprite(0, 0, 'screen-mainmenu');
-        this.gameTitle = this.add.sprite(Ball._WIDTH*0.5, 40, 'title');
-        this.gameTitle.anchor.set(0.5,0);
-        this.startButton = this.add.button(Ball._WIDTH*0.5, 200, 'button-start', this.startGame, this, 2, 0, 1);
-        this.startButton.anchor.set(0.5,0);
-        this.startButton.input.useHandCursor = true;*/
-        console.log("In main menu");
-        this.game.state.start('Intro');
-    },
-    startGame: function() {
-        //this.game.state.start('Game');
+
+    	this.music = this.game.add.audio('title');
+        this.music.loop = true;
+        this.music.volume = 1.0;
+        this.music.play();
+
+        var background = this.game.add.sprite(0, 0, 'background-title');
+
+        this.next_btn = this.game.add.button(335, 380, 'button_start', function() {
+        	this.music.stop();
+			this.game.state.start('Intro');
+		}, this, 1, 0, 2);
     }
 };

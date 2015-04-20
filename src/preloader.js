@@ -27,6 +27,7 @@ PRS.Preloader.prototype = {
         /* background */
         this.load.image('background', 'assets/gfx/stage-fight.png');
         this.load.image('background-intro', 'assets/gfx/stage-intro.png');
+        this.load.image('background-title', 'assets/gfx/stage-title.png');
 
         /* gui */
         this.load.spritesheet('button_next', 'assets/gfx/button-next.png', 131, 53);
@@ -37,6 +38,7 @@ PRS.Preloader.prototype = {
         this.load.spritesheet('button_rock', 'assets/gfx/button-rock.png', 90, 62);
         this.load.spritesheet('button_paper', 'assets/gfx/button-paper.png', 90, 62);
         this.load.spritesheet('button_scissor', 'assets/gfx/button-scissor.png', 90, 62);
+        this.load.spritesheet('button_start', 'assets/gfx/button-start.png', 131, 53);
 
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
@@ -49,6 +51,7 @@ PRS.Preloader.prototype = {
         this.load.audio('tink2', 'assets/sfx/newtink3.mp3');
 
         this.load.audio('music', 'assets/sfx/song.mp3');
+        this.load.audio('title', 'assets/sfx/title.mp3');
         this.load.audio('yay', 'assets/sfx/yay.mp3');
         this.load.audio('boo', 'assets/sfx/boo.mp3');
         this.load.audio('tie', 'assets/sfx/tie.mp3');
