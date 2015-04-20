@@ -27,8 +27,8 @@
         ga('send', 'pageview');
     </script>
 </head>
-<body>
-<div align="center" style="padding-top:55px;">
+<body style="background: url('/assets/gfx/website-background.png') top center no-repeat;">
+<div align="center" style="padding-top:145px;">
     <div id="game" style="width:800px;height:500px;"></div>
 </div>
 <script>
@@ -68,14 +68,21 @@
             enemy_hand:         'arch_hand',
             stage:              4,
             ai:                 new archibald()
-        }
-        ,
+        },
         {
             enemy_portrait:     'marv_portrait',
             enemy_ouch:         'murray_ow',
             enemy_name:         'MARV',
             enemy_hand:         'marv_hand',
             stage:              5,
+            ai:                 new marv()
+        },
+        {
+            enemy_portrait:     'marv_portrait',
+            enemy_ouch:         'murray_ow',
+            enemy_name:         'MARV',
+            enemy_hand:         'marv_hand',
+            stage:              6,
             ai:                 new marv()
         }
     ];
