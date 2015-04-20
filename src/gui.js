@@ -246,6 +246,17 @@ GUI.prototype.generate = function(game, match, data) {
 	data.everything.add(this.enemy_health);
 };
 
+GUI.prototype.win_hero = function(game) {
+	game.time.events.add(600,  function() {
+		this.enemy_portrait.play('hurt', 1, false);
+    }, this);
+};
+GUI.prototype.win_enemy = function(game) {
+	game.time.events.add(600,  function() {
+		this.hero_portrait.play('hurt', 1, true);
+    }, this);
+};
+
 /* called when hero loses a round */
 GUI.prototype.hurt_hero = function(game, amt) {
 	this.hurt_portrait(game, this.hero_portrait);

@@ -100,6 +100,7 @@ PRS.Game.prototype = {
 
             if (this.data.ai.getHealth() < 0) {
                 var mt1 = this.game.add.tween(this.data.music);
+                this.data.gui.win_hero(this.game);
 
                 mt1.to({volume:0.0}, 700);
                 mt1.onComplete.add(function() {
@@ -116,9 +117,9 @@ PRS.Game.prototype = {
 
                 (new MatchOverGUI()).generate(this.game);
                 this.game.is_done = true;
-
             } else if (this.data.hero.getHealth() < 0) {
                 var mt1 = this.game.add.tween(this.data.music);
+                this.data.gui.win_enemy(this.game);
 
                 mt1.to({volume:0.0}, 700);
                 mt1.onComplete.add(function() {
@@ -135,18 +136,11 @@ PRS.Game.prototype = {
 
                 (new MatchOverGUI()).generate(this.game);
                 this.game.is_done = true;
-
-            } else {
-                //this.data.nobodyIsShooting = true;
-                //this.engine = new engine(this);
-                //this.engine.startRound();
             }
         }
     },
 
     update: function() {
-        // Read the justDown getter here so it gets 
-        // reset on every loop rather than stack up.
         if(this.game.is_done)
             return;
 
@@ -166,6 +160,8 @@ PRS.Game.prototype = {
             }
         }
 
+        // Read the justDown getter here so it gets 
+        // reset on every loop rather than stack up.
         var rPress = this.data.r_key.justDown;
         var pPress = this.data.p_key.justDown;
         var sPress = this.data.s_key.justDown;
