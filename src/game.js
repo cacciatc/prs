@@ -103,7 +103,7 @@ PRS.Game.prototype = {
                 var mt1 = this.game.add.tween(this.data.music);
                 this.data.gui.win_hero(this.game);
 
-                mt1.to({volume:0.0}, 700);
+                mt1.to({volume:0.0}, 200);
                 mt1.onComplete.add(function() {
                     this.data.music.stop();
                 }, this);
@@ -122,7 +122,7 @@ PRS.Game.prototype = {
                 var mt1 = this.game.add.tween(this.data.music);
                 this.data.gui.win_enemy(this.game);
 
-                mt1.to({volume:0.0}, 700);
+                mt1.to({volume:0.0}, 200);
                 mt1.onComplete.add(function() {
                     this.data.music.stop();
                 }, this);

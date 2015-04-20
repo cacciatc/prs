@@ -9,10 +9,15 @@ MatchOverGUI.prototype.generate = function(game, retry) {
 		if(retry) {
 			game.state.start('Game');
 		}
-		else {
+		else if(game.match_index+1 < game.matches.length-1){
 			game.match_index++;
 			game.match = game.matches[game.match_index];
 			game.state.start('Intro');
+		}
+		else {
+			game.match_index++;
+			game.match = game.matches[game.match_index];
+			game.state.start('EndState');
 		}
 	}, this, 1, 0, 2);
 };

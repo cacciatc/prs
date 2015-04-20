@@ -6,7 +6,7 @@ var character = function() {
         tieShoot:  function(){},
         winShoot:  function(){},
         loseShoot: function(){
-            health = health - 20;
+            health = health - 200;
         },
         getHealth: function(){
             return health;
