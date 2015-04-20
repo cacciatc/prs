@@ -99,7 +99,7 @@ PRS.Game.prototype = {
                 this.data.gui.tie(this.game);
             }
 
-            if (this.data.ai.getHealth() < 0) {
+            if (this.data.ai.getHealth() <= 0) {
                 var mt1 = this.game.add.tween(this.data.music);
                 this.data.gui.win_hero(this.game);
 
@@ -118,7 +118,7 @@ PRS.Game.prototype = {
 
                 (new MatchOverGUI()).generate(this.game, false);
                 this.game.is_done = true;
-            } else if (this.data.hero.getHealth() < 0) {
+            } else if (this.data.hero.getHealth() <= 0) {
                 var mt1 = this.game.add.tween(this.data.music);
                 this.data.gui.win_enemy(this.game);
 
