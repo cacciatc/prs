@@ -25,6 +25,8 @@ PRS.Game.prototype = {
 
         /* create ai */
         this.data.ai   = this.game.match.ai;
+        this.data.ai.setHealth(100);
+        
         this.data.hero = new character();
 
         /* setup input */

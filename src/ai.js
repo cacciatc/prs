@@ -11,6 +11,9 @@ var character = function() {
         getHealth: function(){
             return health;
         },
+        setHealth: function(h) {
+        	health = h;
+        },
         tell: function(gs) { 
           if (!next_shoot){
             next_shoot = this.nextShoot(gs);
