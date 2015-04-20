@@ -162,9 +162,9 @@ PRS.Game.prototype = {
 
         // Read the justDown getter here so it gets 
         // reset on every loop rather than stack up.
-        var rPress = this.data.r_key.justDown;
-        var pPress = this.data.p_key.justDown;
-        var sPress = this.data.s_key.justDown;
+        var rPress = this.data.r_key.justDown || (this.data.gui != null && this.data.gui.rock_pressed());
+        var pPress = this.data.p_key.justDown || (this.data.gui != null && this.data.gui.paper_pressed());
+        var sPress = this.data.s_key.justDown || (this.data.gui != null && this.data.gui.scissors_pressed());
 
         if (this.engine.hasRoundStarted() && this.data.nobodyIsShooting) {
 

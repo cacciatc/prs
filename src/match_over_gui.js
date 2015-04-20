@@ -5,7 +5,7 @@ function MatchOverGUI() {
 MatchOverGUI.prototype.generate = function(game, retry) {
 	var btn = retry ? 'button_retry' : 'button_next';
 
-	this.next_btn = game.add.button(game.world.centerX - (131/2), 150, btn, function() {
+	this.next_btn = game.add.button(game.world.centerX - (131/2), 230, btn, function() {
 		if(retry) {
 			game.state.start('Game');
 		}

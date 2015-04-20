@@ -30,6 +30,10 @@ function GUI() {
 
 	this.pause				 = null;
 
+	this.r_pressed = false;
+	this.s_pressed = false;
+	this.p_pressed = false;
+
 	this._shake_tween = null;
 	this.shake = function(game, portrait) {
 		if(this._shake_tween!= null && this._shake_tween.isRunning)
@@ -139,13 +143,13 @@ function GUI() {
 };
 
 /* button positions */
-GUI.ROCK_BTN_X 		= 300;
-GUI.PAPER_BTN_X 	= 400;
-GUI.SCISSORS_BTN_X 	= 500;
+GUI.ROCK_BTN_X 		= 220;
+GUI.PAPER_BTN_X 	= 354;
+GUI.SCISSORS_BTN_X 	= 485;
 
-GUI.ROCK_BTN_Y 		= 450;
-GUI.PAPER_BTN_Y 	= 450;
-GUI.SCISSORS_BTN_Y 	= 450;
+GUI.ROCK_BTN_Y 		= 430;
+GUI.PAPER_BTN_Y 	= 430;
+GUI.SCISSORS_BTN_Y 	= 430;
 
 /* portrait positions */
 GUI.HERO_AVATAR_X = 20;
@@ -180,11 +184,17 @@ GUI.PAUSE_Y = 450;
 /* given a game object add gui elements */
 GUI.prototype.generate = function(game, match, data) {
 	/* add button sprites */
-	/*
-	this.rock_sprite_btn 	 = game.add.sprite(GUI.ROCK_BTN_X, GUI.ROCK_BTN_Y, 'input_buttons', 0);
-	this.paper_sprite_btn 	 = game.add.sprite(GUI.PAPER_BTN_X, GUI.PAPER_BTN_Y, 'input_buttons', 1);
-	this.scissors_sprite_btn = game.add.sprite(GUI.SCISSORS_BTN_X, GUI.SCISSORS_BTN_Y), 'input_buttons', 2);
-	*/
+	this.rock_sprite_btn = game.add.button(GUI.ROCK_BTN_X, GUI.ROCK_BTN_Y, 'button_rock', function() {
+		this.r_pressed = true;
+	}, this, 1, 0, 2);
+
+	this.paper_sprite_btn = game.add.button(GUI.PAPER_BTN_X, GUI.PAPER_BTN_Y, 'button_paper', function() {
+		this.p_pressed = true;
+	}, this, 1, 0, 2);
+
+	this.scissor_sprite_btn = game.add.button(GUI.SCISSORS_BTN_X, GUI.SCISSORS_BTN_Y, 'button_scissor', function() {
+		this.s_pressed = true;
+	}, this, 1, 0, 2);
 
 	/* add portraits */
 	this.hero_portrait = game.add.sprite(GUI.HERO_AVATAR_X, -500, 'hero_portrait', 0);
@@ -330,4 +340,22 @@ GUI.prototype.enemy_hand_anim = function(move) {
 		a = "scissors";
 	}
 	this.enemy_hand.play(a);
+};
+
+GUI.prototype.rock_pressed = function() {
+	var tmp = this.r_pressed;
+	this.r_pressed = false;
+	return tmp;
+};
+
+GUI.prototype.scissors_pressed = function() {
+	var tmp = this.s_pressed;
+	this.s_pressed = false;
+	return tmp;
+};
+
+GUI.prototype.paper_pressed = function() {
+	var tmp = this.p_pressed;
+	this.p_pressed = false;
+	return tmp;
 };
