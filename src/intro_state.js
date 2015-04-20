@@ -7,6 +7,9 @@ PRS.Intro.prototype = {
 
         var grp = this.game.add.group();
 
+        this.hero_name = this.game.add.sprite(90, 330, 'names', 0); 
+		this.enemy_name = this.game.add.sprite(800-128-125, 330, 'names', this.game.match.stage);
+
         this.next_btn = this.game.add.button(350, 250, 'button-pause', function() {
         	var t2 = this.game.add.tween(this.hero_portrait);
 			t2.to({y:-500}, 1000, Phaser.Easing.Quartic.In);
@@ -15,6 +18,14 @@ PRS.Intro.prototype = {
 	        var t3 = this.game.add.tween(this.enemy_portrait);
 			t3.to({y:-500}, 1000, Phaser.Easing.Quartic.In);
 	        t3.start();
+
+	        var t4 = this.game.add.tween(this.hero_name);
+			t4.to({x:-500}, 800, Phaser.Easing.Quartic.In, false, 200);
+	        t4.start();
+
+	        var t5 = this.game.add.tween(this.enemy_name);
+			t5.to({x:1300}, 800, Phaser.Easing.Quartic.In, false, 200);
+	        t5.start();
 
 	        var t = this.game.add.tween(grp);
 

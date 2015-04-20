@@ -26,6 +26,8 @@ function GUI() {
 	this.tink1				 = null;
 	this.tink2				 = null;
 
+	this.tie_sound			 = null;
+
 	this.pause				 = null;
 
 	this._shake_tween = null;
@@ -244,6 +246,8 @@ GUI.prototype.generate = function(game, match, data) {
 	data.everything.add(this.hero_hand);
 	data.everything.add(this.hero_health);
 	data.everything.add(this.enemy_health);
+
+	this.tie_sound = game.add.audio("tie");
 };
 
 GUI.prototype.win_hero = function(game) {
@@ -291,6 +295,8 @@ GUI.prototype.tie = function(game) {
     	this.hero_portrait.play('normal', 1, false);
 		this.enemy_portrait.play('normal', 1, false);
     }, this);
+
+ 	this.tie_sound.play();
 };
 
 /* probably only needed for touch/mouse clicks */
