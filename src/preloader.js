@@ -49,6 +49,7 @@ PRS.Preloader.prototype = {
         this.load.audio('yay', 'assets/sfx/yay.mp3');
         this.load.audio('boo', 'assets/sfx/boo.mp3');
         this.load.audio('tie', 'assets/sfx/tie.mp3');
+        this.load.audio('fight', 'assets/sfx/fight.mp3');
     },
     create: function() {
         console.log("In preloader");

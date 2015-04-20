@@ -199,6 +199,10 @@ GUI.prototype.generate = function(game, match, data) {
 
 	var t2 = game.add.tween(this.hero_portrait);
 	t2.to({y:GUI.HERO_AVATAR_Y}, 2000, Phaser.Easing.Quartic.Out);
+	t2.onComplete.add(function() {
+		var fight = game.add.audio('fight');
+        fight.play();
+	}, this);
     t2.start();
 
     var t3 = game.add.tween(this.enemy_portrait);
