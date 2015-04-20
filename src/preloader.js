@@ -56,9 +56,11 @@ PRS.Preloader.prototype = {
         this.load.audio('boo', 'assets/sfx/boo.mp3');
         this.load.audio('tie', 'assets/sfx/tie.mp3');
         this.load.audio('fight', 'assets/sfx/fight.mp3');
+
+        this.bar = this.game.add.sprite(310, 280, "preloader");
+        this.load.setPreloadSprite(this.bar);
     },
     create: function() {
-        console.log("In preloader");
         this.game.state.start('MainMenu');
     }
 };
