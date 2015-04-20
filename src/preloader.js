@@ -30,10 +30,13 @@ PRS.Preloader.prototype = {
 
         /* gui */
         //this.load.spritesheet('input_buttons', 'assets/gfx/input_buttons.png', 64, 64);
-        //this.load.spritesheet('next_button', 'assets/gfx/next_buttons.png', 64, 64);
+        this.load.spritesheet('button_next', 'assets/gfx/button-next.png', 131, 53);
+        this.load.spritesheet('button_retry', 'assets/gfx/button-retry.png', 131, 53);
         this.load.spritesheet('stage-markers', 'assets/gfx/stage-markers.png', 70, 61);
         this.load.spritesheet('button-pause', 'assets/gfx/button-pause.png', 35, 35);
         this.load.spritesheet('names', 'assets/gfx/stage-names.png', 184, 36);
+
+        // stage buttons 90, 62
 
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');

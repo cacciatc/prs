@@ -10,7 +10,7 @@ PRS.Intro.prototype = {
         this.hero_name = this.game.add.sprite(90, 330, 'names', 0); 
 		this.enemy_name = this.game.add.sprite(800-128-125, 330, 'names', this.game.match.stage);
 
-        this.next_btn = this.game.add.button(350, 250, 'button-pause', function() {
+        this.next_btn = this.game.add.button(332, 410, 'button_next', function() {
         	var t2 = this.game.add.tween(this.hero_portrait);
 			t2.to({y:-500}, 1000, Phaser.Easing.Quartic.In);
 	        t2.start();
@@ -30,6 +30,8 @@ PRS.Intro.prototype = {
 	        var t = this.game.add.tween(grp);
 
         	t.to({alpha:0.0}, 2000, Phaser.Easing.Quartic.In);
+        		var fight = this.game.add.audio('fight');
+        		fight.play();
         		t.onComplete.add(function() { this.game.state.start('Game'); }, this);
         	t.start();
 		}, this, 1, 0, 2);

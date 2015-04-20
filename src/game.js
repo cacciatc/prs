@@ -115,7 +115,7 @@ PRS.Game.prototype = {
                 mt2.to({volume:1.0}, 300, Phaser.Easing.Linear.Out, false, 500);
                 mt2.start();
 
-                (new MatchOverGUI()).generate(this.game);
+                (new MatchOverGUI()).generate(this.game, false);
                 this.game.is_done = true;
             } else if (this.data.hero.getHealth() < 0) {
                 var mt1 = this.game.add.tween(this.data.music);
@@ -134,7 +134,7 @@ PRS.Game.prototype = {
                 mt2.to({volume:1.0}, 300, Phaser.Easing.Linear.Out, false, 500);
                 mt2.start();
 
-                (new MatchOverGUI()).generate(this.game);
+                (new MatchOverGUI()).generate(this.game, true);
                 this.game.is_done = true;
             }
         }
