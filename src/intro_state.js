@@ -80,13 +80,13 @@ PRS.Intro.prototype = {
 		t1_tween.onComplete.add(function() {
 			var p2_tween = this.game.add.tween(this.hero_portrait.scale);
 			p2_tween
-				.to({x:1.1, y:1.1}, 300, Phaser.Easing.Circular.Out, false, 4000)
+				.to({x:1.1, y:1.1}, 300, Phaser.Easing.Circular.Out, false, 3000)
 				.to({x:1.0, y:1.0}, 300, Phaser.Easing.Circular.Out);
 			p2_tween.start();
 
 
 			var t2_tween = this.game.add.tween(this.text2);
-			t2_tween.to({alpha:1.0}, 600, Phaser.Easing.Quartic.In, false, 4000);
+			t2_tween.to({alpha:1.0}, 600, Phaser.Easing.Quartic.In, false, 3000);
 			t2_tween.onComplete.add(function() {
 				var t3_tween = this.game.add.tween(this.next_btn);
 				t3_tween.to({alpha:1.0}, 600, Phaser.Easing.Quartic.In, false, 2000);
