@@ -4,10 +4,14 @@ PRS.MainMenu = function(game) {
 PRS.MainMenu.prototype = {
     create: function() {
 
-    	this.music = this.game.add.audio('title');
-        this.music.loop = true;
-        this.music.volume = 1.0;
-        this.music.play();
+    	if(this.game.titlemusic != null && this.game.titlemusic.isPlaying) {
+    		this.game.titlemusic.stop();
+    	}
+    	
+    	this.game.titlemusic = this.game.add.audio('title');
+        this.game.titlemusic.loop = true;
+        this.game.titlemusic.volume = 1.0;
+        this.game.titlemusic.play();
 
         var grp = this.game.add.group();
         var background = this.game.add.sprite(0, 0, 'background-title');
@@ -17,7 +21,6 @@ PRS.MainMenu.prototype = {
         	var t3 = this.game.add.tween(grp);
 			t3.to({alpha:0.0}, 700, Phaser.Easing.Quartic.Out, false, 300);
 	    	t3.onComplete.add(function() {
-        		this.music.stop();
 				this.game.state.start('Intro');
 	    	}, this);
 	    	t3.start();

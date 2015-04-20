@@ -25,6 +25,18 @@ PRS.Preloader.prototype = {
         this.load.image('background', 'assets/gfx/stage-fight.png');
         this.load.image('background-intro', 'assets/gfx/stage-intro.png');
         this.load.image('background-title', 'assets/gfx/stage-title.png');
+        this.load.image('sgt-t1', 'assets/gfx/text-sgt-butterball-1.png');
+        this.load.image('sgt-t2', 'assets/gfx/text-sgt-butterball-2.png');
+        this.load.image('papa-t1', 'assets/gfx/text-papa-1.png');
+        this.load.image('papa-t2', 'assets/gfx/text-papa-2.png');
+        this.load.image('epee-t1', 'assets/gfx/text-mistress-epee-1.png');
+        this.load.image('epee-t2', 'assets/gfx/text-mistress-epee-2.png');
+        this.load.image('arch-t1', 'assets/gfx/text-archibald-1.png');
+        this.load.image('arch-t2', 'assets/gfx/text-archibald-2.png');
+        this.load.image('marv-t1', 'assets/gfx/text-marv-1.png');
+        this.load.image('marv-t2', 'assets/gfx/text-marv-2.png');
+        this.load.image('end-t1', 'assets/gfx/text-endgame-1.png');
+        this.load.image('end-t2', 'assets/gfx/text-endgame-2.png');
 
         /* gui */
         this.load.spritesheet('button_next', 'assets/gfx/button-next.png', 131, 53);

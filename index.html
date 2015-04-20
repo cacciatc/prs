@@ -12,6 +12,7 @@
     <script src="src/preloader.js"></script>
     <script src="src/mainmenu.js"></script>
     <script src="src/intro_state.js"></script>
+    <script src="src/end_state.js"></script>
     <script src="src/game.js"></script>
     <script src="src/ai.js"></script>
     <script src="src/gui.js"></script>
@@ -42,6 +43,8 @@
             enemy_ouch:         'sgt_ow',
             enemy_name:         'SGT. BUTTERBALL',
             enemy_hand:         'sgt_hand',
+            text1:              'sgt-t1',
+            text2:              'sgt-t2',
             stage:              1,
             ai:                 new rockman()
         },
@@ -50,6 +53,8 @@
             enemy_ouch:         'papa_ow',
             enemy_name:         'PAPA PAPYRUS',
             enemy_hand:         'papa_hand',
+            text1:              'papa-t1',
+            text2:              'papa-t2',
             stage:              2,
             ai:                 new paperman()
         },
@@ -58,6 +63,8 @@
             enemy_ouch:         'epee_ow',
             enemy_name:         'MISTRESS EPEE',
             enemy_hand:         'epee_hand',
+            text1:              'epee-t1',
+            text2:              'epee-t2',
             stage:              3,
             ai:                 new scissorman()
         },
@@ -66,6 +73,8 @@
             enemy_ouch:         'arch_ow',
             enemy_name:         'ARCHIBALD',
             enemy_hand:         'arch_hand',
+            text1:              'arch-t1',
+            text2:              'arch-t2',
             stage:              4,
             ai:                 new archibald()
         },
@@ -74,6 +83,8 @@
             enemy_ouch:         'murray_ow',
             enemy_name:         'MARV',
             enemy_hand:         'marv_hand',
+            text1:              'marv-t1',
+            text2:              'marv-t2',
             stage:              5,
             ai:                 new marv()
         },
@@ -82,6 +93,8 @@
             enemy_ouch:         'murray_ow',
             enemy_name:         'MARV',
             enemy_hand:         'marv_hand',
+            text1:              'end-t1',
+            text2:              'end-t2',
             stage:              6,
             ai:                 new marv()
         }
@@ -94,6 +107,7 @@
     game.state.add('MainMenu', PRS.MainMenu);
     game.state.add('Game', PRS.Game);
     game.state.add('Intro', PRS.Intro)
+    game.state.add('EndState', PRS.EndState)
     game.state.start('Boot');
 })();
 </script>
