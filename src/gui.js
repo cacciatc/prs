@@ -157,7 +157,7 @@ GUI.HERO_NAME_X = 160;
 GUI.HERO_NAME_Y = 63;
 GUI.HERO_NAME 	= "SLATER";
 
-GUI.ENEMY_NAME_X = 600 - 105;
+GUI.ENEMY_NAME_X = 600;
 GUI.ENEMY_NAME_Y = 63;
 
 GUI.STAGE_X 	 = 363;
@@ -203,11 +203,8 @@ GUI.prototype.generate = function(game, match, data) {
 	t3.to({y:GUI.ENEMY_AVATAR_Y}, 2000, Phaser.Easing.Quartic.Out);
     t3.start();
 
-	/* add combatant names */
-	var name_style = { font: "34px Amatic SC", fill: "#ffffff", align: "center" };
-
-	this.hero_name = game.add.text(GUI.HERO_NAME_X, GUI.HERO_NAME_Y, GUI.HERO_NAME, name_style);
-	this.enemy_name = game.add.text(GUI.ENEMY_NAME_X, GUI.ENEMY_NAME_Y, match.enemy_name, name_style);
+	this.hero_name = game.add.sprite(GUI.HERO_NAME_X, GUI.HERO_NAME_Y, 'names', 0); 
+	this.enemy_name = game.add.sprite(GUI.ENEMY_NAME_X, GUI.ENEMY_NAME_Y, 'names', match.stage);
 
 	var tmpx = GUI.ENEMY_AVATAR_X - this.enemy_name.width - 20;
 	this.enemy_name.x = tmpx;

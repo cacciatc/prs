@@ -33,6 +33,7 @@ PRS.Preloader.prototype = {
         //this.load.spritesheet('next_button', 'assets/gfx/next_buttons.png', 64, 64);
         this.load.spritesheet('stage-markers', 'assets/gfx/stage-markers.png', 70, 61);
         this.load.spritesheet('button-pause', 'assets/gfx/button-pause.png', 35, 35);
+        this.load.spritesheet('names', 'assets/gfx/stage-names.png', 184, 36);
 
         /* sfx */
         this.load.audio('murray_ow', 'assets/sfx/murrayow.mp3');
