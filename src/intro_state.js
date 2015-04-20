@@ -7,6 +7,7 @@ PRS.Intro.prototype = {
         var background = this.game.add.sprite(0, 0, 'background-intro');
 
         var grp = this.game.add.group();
+        var grp2 = this.game.add.group();
 
         this.hero_name = this.game.add.sprite(90, 330, 'names', 0); 
 		this.enemy_name = this.game.add.sprite(800-128-125, 330, 'names', this.game.match.stage);
@@ -40,10 +41,22 @@ PRS.Intro.prototype = {
 		grp.add(background);
         grp.add(this.next_btn);
 
+        grp2.add(grp);
+
         this.hero_portrait = this.game.add.sprite(60, 150, 'hero_portrait', 0);
         this.enemy_portrait = this.game.add.sprite(800-128-60, 150, this.game.match.enemy_portrait, 0);
 
-        this.dialog = this.game.add.text(
+        grp2.add(this.hero_portrait);
+        grp2.add(this.enemy_portrait);
+        grp2.add(this.hero_name);
+        grp2.add(this.enemy_name);
+
+        grp2.alpha = 0.0;
+		var t2 = this.game.add.tween(grp2);
+		t2.to({alpha:1.0}, 700, Phaser.Easing.Quartic.In);
+	    t2.start();
+
+        /*this.dialog = this.game.add.text(
             250, 
             400,
             this.dialog[this.game.match_index],
@@ -60,7 +73,7 @@ PRS.Intro.prototype = {
 
         var dialog_tween = this.game.add.tween(this.dialog);
         dialog_tween.to({y: 1-this.dialog.height}, 30000);
-        dialog_tween.start();
+        dialog_tween.start();*/
 
         // access match assets to display different text
         //this.game.state.start('Game');
