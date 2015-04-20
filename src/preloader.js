@@ -3,9 +3,6 @@ PRS.Preloader = function(game) {
 };
 PRS.Preloader.prototype = {
     preload: function() {
-        /* font */
-        this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-
         /* gfx */
 
         /* portraits */
